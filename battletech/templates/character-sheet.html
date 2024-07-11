@@ -1,0 +1,24 @@
+<div class="tab-pane" id="personal-data">
+  <h3>Personal Data</h3>
+  <div>
+    <label>Name:</label>
+    <input type="text" name="data.personalData.name" value="{{data.personalData.name}}"/>
+  </div>
+  <div>
+    <label>Player:</label>
+    <input type="text" name="data.personalData.player" value="{{data.personalData.player}}"/>
+  </div>
+  <!-- Add the rest of personal data fields similarly -->
+</div>
+
+<div class="tab-pane" id="attributes">
+  <h3>Attributes</h3>
+  {{#each data.attributes}}
+  <div>
+    <label>{{name}}:</label>
+    <input type="text" name="data.attributes.{{@index}}.score" value="{{score}}"/>
+  </div>
+  {{/each}}
+</div>
+
+<!-- Continue for skills, traits, combatData, biography, inventory, vehicleData, and otherNotes -->
