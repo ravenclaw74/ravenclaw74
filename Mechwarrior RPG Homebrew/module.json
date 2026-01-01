@@ -1,0 +1,92 @@
+{
+  "id": "mechwarrior-rpg-homebrew",
+  "title": "Mechwarrior RPG Homebrew",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "flags": {
+    "canUpload": true
+  },
+  "packs": [
+    {
+      "name": "atow-checks",
+      "label": "ATOW Checks",
+      "path": "packs/atow-checks",
+      "type": "Macro",
+      "system": "worldbuilding",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "atow-rulebooks",
+      "label": "ATOW Rulebooks",
+      "path": "packs/atow-rulebooks",
+      "type": "JournalEntry",
+      "system": "worldbuilding",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "atow-tables",
+      "label": "ATOW Tables",
+      "path": "packs/atow-tables",
+      "type": "RollTable",
+      "system": "worldbuilding",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "mwd-checks",
+      "label": "MWD Checks",
+      "path": "packs/mwd-checks",
+      "type": "Macro",
+      "system": "worldbuilding",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "mwd-rulebooks",
+      "label": "MWD Rulebooks",
+      "path": "packs/mwd-rulebooks",
+      "type": "JournalEntry",
+      "system": "worldbuilding",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "mwd-tables",
+      "label": "MWD Tables",
+      "path": "packs/mwd-tables",
+      "type": "RollTable",
+      "system": "worldbuilding",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "atow-actors",
+      "label": "ATOW Actors",
+      "path": "packs/atow-actors",
+      "type": "Actor",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "worldbuilding"
+    }
+  ],
+  "description": ""
+}
