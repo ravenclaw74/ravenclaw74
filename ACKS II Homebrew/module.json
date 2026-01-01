@@ -1,0 +1,92 @@
+{
+  "id": "acks-ii-homebrew",
+  "title": "ACKS II Homebrew",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "flags": {
+    "canUpload": true
+  },
+  "packs": [
+    {
+      "name": "acks-ii-books",
+      "label": "ACKS II Books",
+      "path": "packs/acks-ii-books",
+      "type": "JournalEntry",
+      "system": "acks",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "acks-ii-character-classes",
+      "label": "ACKS II Character Classes",
+      "path": "packs/acks-ii-character-classes",
+      "type": "Item",
+      "system": "acks",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "acks-ii-class-powers",
+      "label": "ACKS II Class Powers",
+      "path": "packs/acks-ii-class-powers",
+      "type": "Item",
+      "system": "acks",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "acks-ii-macros",
+      "label": "ACKS II Macros",
+      "path": "packs/acks-ii-macros",
+      "type": "Macro",
+      "system": "acks",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "acks-ii-proficiences",
+      "label": "ACKS II Proficiencies",
+      "path": "packs/acks-ii-proficiences",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "acks"
+    },
+    {
+      "name": "acks-ii-racial-traits",
+      "label": "ACKS II Racial Traits",
+      "path": "packs/acks-ii-racial-traits",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "acks"
+    },
+    {
+      "name": "acks-ii-tables",
+      "label": "ACKS II Tables",
+      "path": "packs/acks-ii-tables",
+      "type": "RollTable",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "acks"
+    }
+  ],
+  "description": ""
+}
