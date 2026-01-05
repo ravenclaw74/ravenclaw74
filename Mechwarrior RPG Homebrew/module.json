@@ -1,14 +1,19 @@
 {
   "id": "mechwarrior-rpg-homebrew",
   "title": "Mechwarrior RPG Homebrew",
+  "description": "Custom character sheet and compendiums for A Time of War / MechWarrior Destiny.",
   "version": "1.0.0",
+  "author": "User",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
   },
-  "flags": {
-    "canUpload": true
-  },
+  "esmodules": [
+    "scripts/atow-logic.js"
+  ],
+  "styles": [
+    "styles/atow-style.css"
+  ],
   "packs": [
     {
       "name": "atow-checks",
@@ -81,12 +86,14 @@
       "label": "ATOW Actors",
       "path": "packs/atow-actors",
       "type": "Actor",
+      "system": "worldbuilding",
       "ownership": {
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
-      },
-      "system": "worldbuilding"
+      }
     }
   ],
-  "description": ""
+  "flags": {
+    "canUpload": true
+  }
 }

@@ -1,0 +1,188 @@
+<form class="{{cssClass}} atow-sheet" autocomplete="off">
+    <h1 style="text-align:center">ATOW Character Sheet</h1>
+    
+    <div style="display:flex;justify-content:space-between">
+        <div style="width:70%;vertical-align:top">
+            <h2>Personal Data</h2>
+            <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+                <thead>
+                    <tr>
+                        <th style="width:15%;border-bottom:1px solid #888;text-align:left"></th>
+                        <th style="width:85%;border-bottom:1px solid #888;text-align:left"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td contenteditable="true" name="name">{{actor.name}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Player</strong></td>
+                        <td contenteditable="true" name="system.details.player">{{system.details.player}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Height</strong></td>
+                        <td contenteditable="true" name="system.details.height">{{system.details.height}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Weight</strong></td>
+                        <td contenteditable="true" name="system.details.weight">{{system.details.weight}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hair</strong></td>
+                        <td contenteditable="true" name="system.details.hair">{{system.details.hair}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyes</strong></td>
+                        <td contenteditable="true" name="system.details.eyes">{{system.details.eyes}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Affiliation</strong></td>
+                        <td contenteditable="true" name="system.details.affiliation">{{system.details.affiliation}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Extra Details</strong></td>
+                        <td contenteditable="true" name="system.details.extra">{{system.details.extra}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="width:28%;vertical-align:top">
+            <h3>Movement (Meters per Turn)</h3>
+            <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+                <tbody>
+                    <tr>
+                        <td style="width:30%"><strong>Walk</strong></td>
+                        <td contenteditable="true" style="width:20%" name="system.movement.walk">{{system.movement.walk}}</td>
+                        <td style="width:30%"><strong>Climb</strong></td>
+                        <td contenteditable="true" style="width:20%" name="system.movement.climb">{{system.movement.climb}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width:30%"><strong>Run/Evade</strong></td>
+                        <td contenteditable="true" style="width:20%" name="system.movement.run">{{system.movement.run}}</td>
+                        <td style="width:30%"><strong>Crawl</strong></td>
+                        <td contenteditable="true" style="width:20%" name="system.movement.crawl">{{system.movement.crawl}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width:30%"><strong>Sprint</strong></td>
+                        <td contenteditable="true" style="width:20%" name="system.movement.sprint">{{system.movement.sprint}}</td>
+                        <td style="width:30%"><strong>Swim</strong></td>
+                        <td contenteditable="true" style="width:20%" name="system.movement.swim">{{system.movement.swim}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h2>Attributes</h2>
+    <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+        <thead>
+            <tr>
+                <th style="width:20%;border-bottom:1px solid #888;text-align:left">Attribute</th>
+                <th style="width:15%;border-bottom:1px solid #888;text-align:left">Attribute Value</th>
+                <th style="width:25%;border-bottom:1px solid #888;text-align:left">Attribute Check</th>
+                <th style="width:15%;border-bottom:1px solid #888;text-align:left">XP</th>
+                <th style="width:25%;border-bottom:1px solid #888;text-align:left">Opposed Attribute Roll</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each system.attributes as |attr key|}}
+            <tr>
+                <td>{{attr.label}}</td>
+                <td contenteditable="true" name="system.attributes.{{key}}.value">{{attr.value}}</td>
+                <td>{{{attr.check}}}</td>
+                <td contenteditable="true" name="system.attributes.{{key}}.xp">{{attr.xp}}</td>
+                <td>{{{attr.opposed}}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Secondary Characteristics</h2>
+    <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+        <tbody>
+            <tr>
+                <td style="width:15%"><strong>Edge Save</strong></td>
+                <td style="width:35%">{{{ "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.RB3Vr6fC0wYNvDHl]{Edge Save}" }}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="width:15%"><strong>Wealth Check</strong></td>
+                <td style="width:35%">{{{ "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.c7vJUYnhZWKCnvyn]{Wealth Check}" }}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Skills</h2>
+    <table style="width:100%;border-collapse:collapse;table-layout:fixed;max-width:600px;margin-bottom:15px">
+        <tbody>
+            <tr>
+                <td><strong>Skill Check</strong></td>
+                <td contenteditable="true" name="system.temp.skillcheck_name"></td>
+                <td>{{{ "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.2pFTD0VbxbwyB9Bj]{Skill Check}" }}}</td>
+                <td>{{{ "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.UpbfgDQuMZXMyxT7]{Opposed Skill Check}" }}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="display:flex;gap:20px">
+        <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+            <thead>
+                <tr>
+                    <th style="width:40%;border-bottom:1px solid #888;text-align:left">Skill</th>
+                    <th style="width:15%;border-bottom:1px solid #888;text-align:left">Lvl</th>
+                    <th style="width:15%;border-bottom:1px solid #888;text-align:left">Links</th>
+                    <th style="width:15%;border-bottom:1px solid #888;text-align:left">TN/C</th>
+                    <th style="width:15%;border-bottom:1px solid #888;text-align:left">XP</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each system.skills_left as |skill i|}}
+                <tr>
+                    <td contenteditable="true" name="system.skills_left.{{i}}.name">{{skill.name}}</td>
+                    <td contenteditable="true" name="system.skills_left.{{i}}.lvl">{{skill.lvl}}</td>
+                    <td contenteditable="true" name="system.skills_left.{{i}}.links">{{skill.links}}</td>
+                    <td contenteditable="true" name="system.skills_left.{{i}}.tnc">{{skill.tnc}}</td>
+                    <td contenteditable="true" name="system.skills_left.{{i}}.xp">{{skill.xp}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Combat Data</h2>
+    <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+        <tbody>
+            <tr>
+                <td style="width:15%"><strong>Standard Damage</strong></td>
+                <td contenteditable="true" style="width:35%" name="system.combat.damage">{{system.combat.damage}}</td>
+                <td style="width:15%"><strong>Fatigue Damage</strong></td>
+                <td contenteditable="true" style="width:35%" name="system.combat.fatigue">{{system.combat.fatigue}}</td>
+            </tr>
+            <tr>
+                <td style="width:15%"><strong>Initiative</strong></td>
+                <td style="width:35%">{{{ "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.1ZklyZtLbpmnnBHq]{Initiative}" }}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="width:15%"><strong>Melee Attack</strong></td>
+                <td style="width:35%">{{{ "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.jvSmI206CbLA9J8z]{Melee Attack}" }}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="width:15%"><strong>Ranged Attack</strong></td>
+                <td style="width:35%">{{{ "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.kc4pta6eq8PTf3Ye]{Ranged Attack}" }}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
