@@ -1,9 +1,8 @@
 {
   "id": "mechwarrior-rpg-homebrew",
   "title": "Mechwarrior RPG Homebrew",
-  "description": "Custom character sheet and compendiums for A Time of War / MechWarrior Destiny.",
+  "description": "<p>Custom character sheet and compendiums for A Time of War / MechWarrior Destiny.</p>",
   "version": "1.0.0",
-  "author": "User",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
@@ -12,7 +11,9 @@
     "scripts/atow-logic.js"
   ],
   "styles": [
-    "styles/atow-style.css"
+    {
+      "src": "styles/atow-style.css"
+    }
   ],
   "packs": [
     {
@@ -91,6 +92,17 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "cbt-as-tables",
+      "label": "CBT/AS Tables",
+      "path": "packs/cbt-as-tables",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "worldbuilding"
     }
   ],
   "flags": {
