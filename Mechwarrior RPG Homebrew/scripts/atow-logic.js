@@ -18,30 +18,25 @@ export class ATOWActorSheet extends ActorSheet {
         // Map of all hardcoded macros used in the sheet
         const macroMapping = {
             // Attribute Checks
-            strCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.Dd0KYP6rTNQSYiV8]{STR}",
-            bodCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.Dd0KYP6rTNQSYiV8]{BOD}",
-            rflCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.Dd0KYP6rTNQSYiV8]{RFL}",
-            dexCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.Dd0KYP6rTNQSYiV8]{DEX}",
-            intCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.Dd0KYP6rTNQSYiV8]{INT}",
-            wilCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.Dd0KYP6rTNQSYiV8]{WIL}",
-            chaCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.Dd0KYP6rTNQSYiV8]{CHA}",
-            edgCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.Dd0KYP6rTNQSYiV8]{EDG}",
+            strCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.RryBPfe5LNiWFVvz]{STR}",
+            bodCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cJvagGzwyEVc3gii]{BOD}",
+            rflCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.SvQXpqJ4atrnd6RU]{RFL}",
+            dexCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.ufLn7S7Rx14zrrl6]{DEX}",
+            intCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.zjgpiP8mBcXrb8C4]{INT}",
+            wilCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.0WhvAiJh3NgtVQWl]{WIL}",
+            chaCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.ZxDLnubpdajNNQfn]{CHA}",
+            edgCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.BwMHpLJNMQWpbeTx]{EDG}",
 
-            // Opposed Attribute Rolls
-            opposedStr: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cztQJHa3Ft2x0FAT]{Opposed STR}",
-            opposedBod: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cztQJHa3Ft2x0FAT]{Opposed BOD}",
-            opposedRfl: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cztQJHa3Ft2x0FAT]{Opposed RFL}",
-            opposedDex: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cztQJHa3Ft2x0FAT]{Opposed DEX}",
-            opposedInt: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cztQJHa3Ft2x0FAT]{Opposed INT}",
-            opposedWil: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cztQJHa3Ft2x0FAT]{Opposed WIL}",
-            opposedCha: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cztQJHa3Ft2x0FAT]{Opposed CHA}",
-            opposedEdg: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cztQJHa3Ft2x0FAT]{Opposed EDG}",
+            // Attribute Rolls
+            dualAttr: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.FYoIfLh4De5ptjOt]{Dual Attribute Roll}",
+            opposedAttr: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.cztQJHa3Ft2x0FAT]{Opposed Attribute Roll}",
 
             // Secondary Characteristics & Skills
             edgeSave: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.RB3Vr6fC0wYNvDHl]{Edge Save}",
             wealthCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.c7vJUYnhZWKCnvyn]{Wealth Check}",
             skillCheck: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.2pFTD0VbxbwyB9Bj]{Skill Check}",
             opposedSkill: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.UpbfgDQuMZXMyxT7]{Opposed Skill Check}",
+            bundledSkill: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.spAIsYVtCsT52irc]{Bundled Skill Check}",
 
             // Combat Data
             initiative: "@UUID[Compendium.mechwarrior-rpg-homebrew.atow-checks.Macro.1ZklyZtLbpmnnBHq]{Initiative}",
