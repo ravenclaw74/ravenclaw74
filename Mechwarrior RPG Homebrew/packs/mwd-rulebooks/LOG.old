@@ -1,3 +1,8 @@
-2026/01/14-17:57:11.606 335c Recovering log #161
-2026/01/14-17:57:11.609 335c Delete type=0 #161
-2026/01/14-17:57:11.609 335c Delete type=3 #159
+2026/01/18-00:04:20.795 4870 Recovering log #195
+2026/01/18-00:04:20.798 4870 Delete type=0 #195
+2026/01/18-00:04:20.798 4870 Delete type=3 #193
+2026/01/18-00:13:27.491 1ffc Level-0 table #200: started
+2026/01/18-00:13:27.491 1ffc Level-0 table #200: 0 bytes OK
+2026/01/18-00:13:27.492 1ffc Delete type=0 #198
+2026/01/18-00:13:27.495 1ffc Manual compaction at level-0 from '!journal!clSafjNvysKWlCM0' @ 72057594037927935 : 1 .. '!journal.pages!clSafjNvysKWlCM0.SCv9jCH3Fypm1bGI' @ 0 : 0; will stop at (end)
+2026/01/18-00:13:27.495 1ffc Manual compaction at level-1 from '!journal!clSafjNvysKWlCM0' @ 72057594037927935 : 1 .. '!journal.pages!clSafjNvysKWlCM0.SCv9jCH3Fypm1bGI' @ 0 : 0; will stop at (end)
