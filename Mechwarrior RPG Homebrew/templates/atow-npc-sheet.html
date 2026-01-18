@@ -236,7 +236,8 @@
 <hr>
 <h2>Combat Data</h2>
 <table style="width:100%;border-collapse:collapse;table-layout:fixed">
-    <tbody><tr>
+    <tbody>
+        <tr>
             <td style="width:15%">
                 <p><strong>Standard Damage</strong></p>
             </td>
@@ -249,20 +250,22 @@
             <td contenteditable="true" style="width:35%" name="system.combat.damage.fatigue">
                 {{system.combat.damage.fatigue}}
             </td>
-</tr><tr>
+        </tr>
+        <tr>
             <td style="width:15%">
                 <p><strong>Stun</strong></p>
             </td>
-            <td contenteditable="true" style="width:35%" name="system.combat.stun">
-                {{system.combat.stun}}
+            <td style="width:35%; text-align: center;">
+                <input type="checkbox" name="system.combat.stun" {{checked system.combat.stun}} style="transform: scale(1.5);">
             </td>
             <td style="width:15%">
                 <p><strong>Unconscious</strong></p>
             </td>
-            <td contenteditable="true" style="width:35%" name="system.combat.unconscious">
-                {{system.combat.unconscious}}
+            <td style="width:35%; text-align: center;">
+                <input type="checkbox" name="system.combat.unconscious" {{checked system.combat.unconscious}} style="transform: scale(1.5);">
             </td>
-</tr><tr>
+        </tr>
+        <tr>
             <td style="width:15%">
                 <p><strong>Initiative</strong></p>
             </td>
@@ -275,7 +278,8 @@
             <td>
                 <p></p>
             </td>
-</tr><tr>
+        </tr>
+        <tr>
             <td style="width:15%">
                 <p><strong>Melee Attack</strong></p>
             </td>
@@ -288,7 +292,8 @@
             <td>
                 <p></p>
             </td>
-</tr><tr>
+        </tr>
+        <tr>
             <td style="width:15%">
                 <p><strong>Ranged Attack</strong></p>
             </td>
@@ -301,7 +306,8 @@
             <td>
                 <p></p>
             </td>
-</tr></tbody>
+        </tr>
+    </tbody>
 </table>
 <h3>Armor</h3>
 <table style="width:100%;border-collapse:collapse;table-layout:fixed">
