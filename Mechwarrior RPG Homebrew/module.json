@@ -9,6 +9,7 @@
   },
   "esmodules": [
     "scripts/atow-logic.js",
+	"scripts/atow-troop-logic.js",
     "scripts/atow-npc-logic.js"
   ],
   "styles": [
