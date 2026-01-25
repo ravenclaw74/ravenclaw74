@@ -108,3 +108,37 @@
     border-top: 2px double #888;
     margin: 20px 0;
 }
+
+/* --- Tabs Navigation --- */
+.atow-sheet .sheet-tabs {
+    flex: 0;
+    display: flex;
+    border-top: 1px solid #AAA;
+    border-bottom: 1px solid #AAA;
+    margin-bottom: 10px;
+}
+
+.atow-sheet .sheet-tabs .item {
+    padding: 5px 10px;
+    border-right: 1px solid #AAA;
+    text-align: center;
+    font-weight: bold;
+}
+
+.atow-sheet .sheet-tabs .item:last-child {
+    border-right: none;
+}
+
+.atow-sheet .sheet-tabs .item.active {
+    background: rgba(0, 0, 0, 0.05);
+    text-shadow: 0 0 5px #4b4a44;
+}
+
+/* --- Tab Content Visibility --- */
+.atow-sheet .tab {
+    display: none;
+}
+
+.atow-sheet .tab.active {
+    display: block;
+}
