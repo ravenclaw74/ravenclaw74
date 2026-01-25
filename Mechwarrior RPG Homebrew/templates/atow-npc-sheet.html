@@ -1,369 +1,389 @@
-<h1 style="text-align:center">ATOW NPC Sheet</h1>
-<div style="display:flex;justify-content:space-between">
-    <div style="width:70%;vertical-align:top">
-        <h2>Personal Data</h2>
-        <table style="width:100%;border-collapse:collapse;table-layout:fixed">
-            <thead>
-                <tr>
-                    <th style="width:15%;border-bottom:1px solid #888;text-align:left"></th>
-                    <th style="width:85%;border-bottom:1px solid #888;text-align:left"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Name</strong></td>
-                    <td contenteditable="true" name="name">{{actor.name}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div style="width:28%;vertical-align:top">
-        <h3>Movement (Meters per Turn)</h3>
-        <table style="width:100%;border-collapse:collapse;table-layout:fixed">
-            <tbody><tr>
-                    <td style="width:30%">
-                        <p><strong>Walk</strong></p>
-                    </td>
-                    <td contenteditable="true" style="width:20%" name="system.movement.walk">
-                        {{system.movement.walk}}
-                    </td>
-                    <td style="width:30%">
-                        <p><strong>Climb</strong></p>
-                    </td>
-                    <td contenteditable="true" style="width:20%" name="system.movement.climb">
-                        {{system.movement.climb}}
-                    </td>
-</tr><tr>
-                    <td style="width:30%">
-                        <p><strong>Run/Evade</strong></p>
-                    </td>
-                    <td contenteditable="true" style="width:20%" name="system.movement.run">
-                        {{system.movement.run}}
-                    </td>
-                    <td style="width:30%">
-                        <p><strong>Crawl</strong></p>
-                    </td>
-                    <td contenteditable="true" style="width:20%" name="system.movement.crawl">
-                        {{system.movement.crawl}}
-                    </td>
-</tr><tr>
-                    <td style="width:30%">
-                        <p><strong>Sprint</strong></p>
-                    </td>
-                    <td contenteditable="true" style="width:20%" name="system.movement.sprint">
-                        {{system.movement.sprint}}
-                    </td>
-                    <td style="width:30%">
-                        <p><strong>Swim</strong></p>
-                    </td>
-                    <td contenteditable="true" style="width:20%" name="system.movement.swim">
-                        {{system.movement.swim}}
-                    </td>
-</tr></tbody>
-        </table>
-    </div>
-</div>
-<h2>Attributes</h2>
-<div style="margin-bottom: 10px;">
-    {{{enrichedMacros.dualAttr}}} {{{enrichedMacros.opposedAttr}}}
-</div>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed">
-    <thead>
-        <tr>
-            <th style="width:40%;border-bottom:1px solid #888;text-align:left">Attribute</th>
-            <th style="width:30%;border-bottom:1px solid #888;text-align:left">Attribute Value</th>
-            <th style="width:30%;border-bottom:1px solid #888;text-align:left">Attribute Check</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Strength (STR)</td>
-            <td contenteditable="true" name="system.attributes.str.value">{{system.attributes.str.value}}</td>
-            <td>{{{enrichedMacros.strCheck}}}</td>
-        </tr>
-        <tr>
-            <td>Body (BOD)</td>
-            <td contenteditable="true" name="system.attributes.bod.value">{{system.attributes.bod.value}}</td>
-            <td>{{{enrichedMacros.bodCheck}}}</td>
-        </tr>
-        <tr>
-            <td>Reflexes (RFL)</td>
-            <td contenteditable="true" name="system.attributes.rfl.value">{{system.attributes.rfl.value}}</td>
-            <td>{{{enrichedMacros.rflCheck}}}</td>
-        </tr>
-        <tr>
-            <td>Dexterity (DEX)</td>
-            <td contenteditable="true" name="system.attributes.dex.value">{{system.attributes.dex.value}}</td>
-            <td>{{{enrichedMacros.dexCheck}}}</td>
-        </tr>
-        <tr>
-            <td>Intelligence (INT)</td>
-            <td contenteditable="true" name="system.attributes.int.value">{{system.attributes.int.value}}</td>
-            <td>{{{enrichedMacros.intCheck}}}</td>
-        </tr>
-        <tr>
-            <td>Willpower (WIL)</td>
-            <td contenteditable="true" name="system.attributes.wil.value">{{system.attributes.wil.value}}</td>
-            <td>{{{enrichedMacros.wilCheck}}}</td>
-        </tr>
-        <tr>
-            <td>Charisma (CHA)</td>
-            <td contenteditable="true" name="system.attributes.cha.value">{{system.attributes.cha.value}}</td>
-            <td>{{{enrichedMacros.chaCheck}}}</td>
-        </tr>
-        <tr>
-            <td>Edge (EDG)</td>
-            <td contenteditable="true" name="system.attributes.edg.value">{{system.attributes.edg.value}}</td>
-            <td>{{{enrichedMacros.edgCheck}}}</td>
-        </tr>
-    </tbody>
-</table>
-<hr>
-<h2>Secondary Characteristics</h2>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed">
-    <tbody><tr>
-            <td style="width:15%">
-                <p><strong>Edge Save</strong></p>
-            </td>
-            <td style="width:35%">
-                {{{enrichedMacros.edgeSave}}}
-            </td>
-            <td>
-                <p></p>
-            </td>
-            <td>
-                <p></p>
-            </td>
-</tr><tr>
-            <td style="width:15%">
-                <p><strong>Wealth Check</strong></p>
-            </td>
-            <td style="width:35%">
-                {{{enrichedMacros.wealthCheck}}}
-            </td>
-            <td>
-                <p></p>
-            </td>
-            <td>
-                <p></p>
-            </td>
-</tr></tbody>
-</table>
-<h2>Traits</h2>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed">
-    <thead>
-        <tr>
-            <th style="width:80%;border-bottom:1px solid #888;text-align:left">Trait</th>
-            <th style="width:20%;border-bottom:1px solid #888;text-align:left">TP</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
-    </tbody>
-</table>
-<hr>
-<h2>Skills</h2>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed;max-width:800px;margin-bottom:15px">
-    <tbody><tr>
-            <td>
-                <p><strong>Skill Checks</strong></p>
-            </td>
-            <td>
-                {{{enrichedMacros.skillCheck}}}
-            </td>
-            <td>
-                {{{enrichedMacros.opposedSkill}}}
-            </td>
-            <td>
-                {{{enrichedMacros.bundledSkill}}}
-            </td>
-</tr></tbody>
-</table>
-<div style="display:flex;gap:20px">
-    <table style="width:100%;border-collapse:collapse;table-layout:fixed;max-width:600px">
-        <thead>
-            <tr>
-                <th style="width:50%;border-bottom:1px solid #888;text-align:left">Skill</th>
-                <th style="width:15%;border-bottom:1px solid #888;text-align:left">Lvl</th>
-                <th style="width:15%;border-bottom:1px solid #888;text-align:left">Links</th>
-                <th style="width:20%;border-bottom:1px solid #888;text-align:left">TN/C</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        </tbody>
-    </table>
-    <table style="width:100%;border-collapse:collapse;table-layout:fixed;max-width:600px">
-        <thead>
-            <tr>
-                <th style="width:50%;border-bottom:1px solid #888;text-align:left">Skill</th>
-                <th style="width:15%;border-bottom:1px solid #888;text-align:left">Lvl</th>
-                <th style="width:15%;border-bottom:1px solid #888;text-align:left">Links</th>
-                <th style="width:20%;border-bottom:1px solid #888;text-align:left">TN/C</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-            <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        </tbody>
-    </table>
-</div>
+<form class="{{cssClass}}" autocomplete="off">
+    <h1 style="text-align:center">ATOW NPC Sheet</h1>
 
-<hr>
-<h2>Combat Data</h2>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed">
-    <tbody>
-        <tr>
-            <td style="width:15%">
-                <p><strong>Standard Damage</strong></p>
-            </td>
-            <td contenteditable="true" style="width:35%" name="system.combat.damage.standard">
-                {{system.combat.damage.standard}}
-            </td>
-            <td style="width:15%">
-                <p><strong>Fatigue Damage</strong></p>
-            </td>
-            <td contenteditable="true" style="width:35%" name="system.combat.damage.fatigue">
-                {{system.combat.damage.fatigue}}
-            </td>
-        </tr>
-        <tr>
-            <td style="width:15%">
-                <p><strong>Stun</strong></p>
-            </td>
-            <td style="width:35%; text-align: center;">
-                <input type="checkbox" name="system.combat.stun" {{checked system.combat.stun}} style="transform: scale(1.5);">
-            </td>
-            <td style="width:15%">
-                <p><strong>Unconscious</strong></p>
-            </td>
-            <td style="width:35%; text-align: center;">
-                <input type="checkbox" name="system.combat.unconscious" {{checked system.combat.unconscious}} style="transform: scale(1.5);">
-            </td>
-        </tr>
-        <tr>
-            <td style="width:15%">
-                <p><strong>Initiative</strong></p>
-            </td>
-            <td>
-                {{{enrichedMacros.initiative}}}
-            </td>
-            <td>
-                <p></p>
-            </td>
-            <td>
-                <p></p>
-            </td>
-        </tr>
-        <tr>
-            <td style="width:15%">
-                <p><strong>Melee Attack</strong></p>
-            </td>
-            <td>
-                {{{enrichedMacros.meleeAttack}}}
-            </td>
-            <td>
-                <p></p>
-            </td>
-            <td>
-                <p></p>
-            </td>
-        </tr>
-        <tr>
-            <td style="width:15%">
-                <p><strong>Ranged Attack</strong></p>
-            </td>
-            <td>
-                {{{enrichedMacros.rangedAttack}}}
-            </td>
-            <td>
-                <p></p>
-            </td>
-            <td>
-                <p></p>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<h3>Armor</h3>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed">
-    <thead>
-        <tr>
-            <th style="width:40%"><strong>Personal Armor</strong></th>
-            <th style="width:20%"><strong>Location</strong></th>
-            <th style="width:20%"><strong>Armor Type</strong></th>
-            <th style="width:5%"><strong>M</strong></th>
-            <th style="width:5%"><strong>B</strong></th>
-            <th style="width:5%"><strong>E</strong></th>
-            <th style="width:5%"><strong>X</strong></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-    </tbody>
-</table>
-<h3>Weapons</h3>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed">
-    <thead>
-        <tr>
-            <th style="width:20%"><strong>Weapon</strong></th>
-            <th style="width:20%"><strong>Skill</strong></th>
-            <th style="width:5%"><strong>AP</strong></th>
-            <th style="width:5%"><strong>BD</strong></th>
-            <th style="width:15%"><strong>Range</strong></th>
-            <th style="width:15%"><strong>Ammo</strong></th>
-            <th style="width:20%"><strong>Notes</strong></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-        <tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-    </tbody>
-</table>
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="main">Main</a>
+        <a class="item" data-tab="traits">Traits/Skills</a>
+        <a class="item" data-tab="combat">Combat</a>
+        <a class="item" data-tab="notes">Notes</a>
+    </nav>
 
-<h2>Notes</h2>
-<table style="width:100%;border-collapse:collapse;table-layout:fixed">
-    <tbody>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-        <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
-    </tbody>
-</table>
+    <section class="sheet-body">
+        <div class="tab main" data-group="primary" data-tab="main">
+            <div style="display:flex;justify-content:space-between">
+                <div style="width:70%;vertical-align:top">
+                    <h2>Personal Data</h2>
+                    <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+                        <thead>
+                            <tr>
+                                <th style="width:15%;border-bottom:1px solid #888;text-align:left"></th>
+                                <th style="width:85%;border-bottom:1px solid #888;text-align:left"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td contenteditable="true" name="name">{{actor.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="width:28%;vertical-align:top">
+                    <h3>Movement (Meters per Turn)</h3>
+                    <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+                        <tbody><tr>
+                                <td style="width:30%">
+                                    <p><strong>Walk</strong></p>
+                                </td>
+                                <td contenteditable="true" style="width:20%" name="system.movement.walk">
+                                    {{system.movement.walk}}
+                                </td>
+                                <td style="width:30%">
+                                    <p><strong>Climb</strong></p>
+                                </td>
+                                <td contenteditable="true" style="width:20%" name="system.movement.climb">
+                                    {{system.movement.climb}}
+                                </td>
+            </tr><tr>
+                                <td style="width:30%">
+                                    <p><strong>Run/Evade</strong></p>
+                                </td>
+                                <td contenteditable="true" style="width:20%" name="system.movement.run">
+                                    {{system.movement.run}}
+                                </td>
+                                <td style="width:30%">
+                                    <p><strong>Crawl</strong></p>
+                                </td>
+                                <td contenteditable="true" style="width:20%" name="system.movement.crawl">
+                                    {{system.movement.crawl}}
+                                </td>
+            </tr><tr>
+                                <td style="width:30%">
+                                    <p><strong>Sprint</strong></p>
+                                </td>
+                                <td contenteditable="true" style="width:20%" name="system.movement.sprint">
+                                    {{system.movement.sprint}}
+                                </td>
+                                <td style="width:30%">
+                                    <p><strong>Swim</strong></p>
+                                </td>
+                                <td contenteditable="true" style="width:20%" name="system.movement.swim">
+                                    {{system.movement.swim}}
+                                </td>
+            </tr></tbody>
+                    </table>
+                </div>
+            </div>
+            <h2>Attributes</h2>
+            <div style="margin-bottom: 10px;">
+                {{{enrichedMacros.dualAttr}}} {{{enrichedMacros.opposedAttr}}}
+            </div>
+            <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+                <thead>
+                    <tr>
+                        <th style="width:40%;border-bottom:1px solid #888;text-align:left">Attribute</th>
+                        <th style="width:30%;border-bottom:1px solid #888;text-align:left">Attribute Value</th>
+                        <th style="width:30%;border-bottom:1px solid #888;text-align:left">Attribute Check</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Strength (STR)</td>
+                        <td contenteditable="true" name="system.attributes.str.value">{{system.attributes.str.value}}</td>
+                        <td>{{{enrichedMacros.strCheck}}}</td>
+                    </tr>
+                    <tr>
+                        <td>Body (BOD)</td>
+                        <td contenteditable="true" name="system.attributes.bod.value">{{system.attributes.bod.value}}</td>
+                        <td>{{{enrichedMacros.bodCheck}}}</td>
+                    </tr>
+                    <tr>
+                        <td>Reflexes (RFL)</td>
+                        <td contenteditable="true" name="system.attributes.rfl.value">{{system.attributes.rfl.value}}</td>
+                        <td>{{{enrichedMacros.rflCheck}}}</td>
+                    </tr>
+                    <tr>
+                        <td>Dexterity (DEX)</td>
+                        <td contenteditable="true" name="system.attributes.dex.value">{{system.attributes.dex.value}}</td>
+                        <td>{{{enrichedMacros.dexCheck}}}</td>
+                    </tr>
+                    <tr>
+                        <td>Intelligence (INT)</td>
+                        <td contenteditable="true" name="system.attributes.int.value">{{system.attributes.int.value}}</td>
+                        <td>{{{enrichedMacros.intCheck}}}</td>
+                    </tr>
+                    <tr>
+                        <td>Willpower (WIL)</td>
+                        <td contenteditable="true" name="system.attributes.wil.value">{{system.attributes.wil.value}}</td>
+                        <td>{{{enrichedMacros.wilCheck}}}</td>
+                    </tr>
+                    <tr>
+                        <td>Charisma (CHA)</td>
+                        <td contenteditable="true" name="system.attributes.cha.value">{{system.attributes.cha.value}}</td>
+                        <td>{{{enrichedMacros.chaCheck}}}</td>
+                    </tr>
+                    <tr>
+                        <td>Edge (EDG)</td>
+                        <td contenteditable="true" name="system.attributes.edg.value">{{system.attributes.edg.value}}</td>
+                        <td>{{{enrichedMacros.edgCheck}}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <h2>Secondary Characteristics</h2>
+            <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+                <tbody><tr>
+                        <td style="width:15%">
+                            <p><strong>Edge Save</strong></p>
+                        </td>
+                        <td style="width:35%">
+                            {{{enrichedMacros.edgeSave}}}
+                        </td>
+                        <td>
+                            <p></p>
+                        </td>
+                        <td>
+                            <p></p>
+                        </td>
+            </tr><tr>
+                        <td style="width:15%">
+                            <p><strong>Wealth Check</strong></p>
+                        </td>
+                        <td style="width:35%">
+                            {{{enrichedMacros.wealthCheck}}}
+                        </td>
+                        <td>
+                            <p></p>
+                        </td>
+                        <td>
+                            <p></p>
+                        </td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        <div class="tab traits" data-group="primary" data-tab="traits">
+            <h2>Traits</h2>
+            <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+                <thead>
+                    <tr>
+                        <th style="width:80%;border-bottom:1px solid #888;text-align:left">Trait</th>
+                        <th style="width:20%;border-bottom:1px solid #888;text-align:left">TP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true">0</td></tr>
+                </tbody>
+            </table>
+            <hr>
+            <h2>Skills</h2>
+            <table style="width:100%;border-collapse:collapse;table-layout:fixed;max-width:800px;margin-bottom:15px">
+                <tbody><tr>
+                        <td>
+                            <p><strong>Skill Checks</strong></p>
+                        </td>
+                        <td>
+                            {{{enrichedMacros.skillCheck}}}
+                        </td>
+                        <td>
+                            {{{enrichedMacros.opposedSkill}}}
+                        </td>
+                        <td>
+                            {{{enrichedMacros.bundledSkill}}}
+                        </td>
+            </tr></tbody>
+            </table>
+            <div style="display:flex;gap:20px">
+				<table style="width:100%;border-collapse:collapse;table-layout:fixed;max-width:600px">
+					<thead>
+						<tr>
+							<th style="width:50%;border-bottom:1px solid #888;text-align:left">Skill</th>
+							<th style="width:15%;border-bottom:1px solid #888;text-align:left">Lvl</th>
+							<th style="width:15%;border-bottom:1px solid #888;text-align:left">Links</th>
+							<th style="width:20%;border-bottom:1px solid #888;text-align:left">TN/C</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					</tbody>
+				</table>
+				<table style="width:100%;border-collapse:collapse;table-layout:fixed;max-width:600px">
+					<thead>
+						<tr>
+							<th style="width:50%;border-bottom:1px solid #888;text-align:left">Skill</th>
+							<th style="width:15%;border-bottom:1px solid #888;text-align:left">Lvl</th>
+							<th style="width:15%;border-bottom:1px solid #888;text-align:left">Links</th>
+							<th style="width:20%;border-bottom:1px solid #888;text-align:left">TN/C</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+						<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					</tbody>
+				</table>
+			</div>
+        </div>
+
+        <div class="tab combat" data-group="primary" data-tab="combat">
+            <h2>Combat Data</h2>
+			<table style="width:100%;border-collapse:collapse;table-layout:fixed">
+				<tbody>
+					<tr>
+						<td style="width:15%">
+							<p><strong>Standard Damage</strong></p>
+						</td>
+						<td contenteditable="true" style="width:35%" name="system.combat.damage.standard">
+							{{system.combat.damage.standard}}
+						</td>
+						<td style="width:15%">
+							<p><strong>Fatigue Damage</strong></p>
+						</td>
+						<td contenteditable="true" style="width:35%" name="system.combat.damage.fatigue">
+							{{system.combat.damage.fatigue}}
+						</td>
+					</tr>
+					<tr>
+						<td style="width:15%">
+							<p><strong>Stun</strong></p>
+						</td>
+						<td style="width:35%; text-align: center;">
+							<input type="checkbox" name="system.combat.stun" {{checked system.combat.stun}} style="transform: scale(1.5);">
+						</td>
+						<td style="width:15%">
+							<p><strong>Unconscious</strong></p>
+						</td>
+						<td style="width:35%; text-align: center;">
+							<input type="checkbox" name="system.combat.unconscious" {{checked system.combat.unconscious}} style="transform: scale(1.5);">
+						</td>
+					</tr>
+					<tr>
+						<td style="width:15%">
+							<p><strong>Initiative</strong></p>
+						</td>
+						<td>
+							{{{enrichedMacros.initiative}}}
+						</td>
+						<td>
+							<p></p>
+						</td>
+						<td>
+							<p></p>
+						</td>
+					</tr>
+					<tr>
+						<td style="width:15%">
+							<p><strong>Melee Attack</strong></p>
+						</td>
+						<td>
+							{{{enrichedMacros.meleeAttack}}}
+						</td>
+						<td>
+							<p></p>
+						</td>
+						<td>
+							<p></p>
+						</td>
+					</tr>
+					<tr>
+						<td style="width:15%">
+							<p><strong>Ranged Attack</strong></p>
+						</td>
+						<td>
+							{{{enrichedMacros.rangedAttack}}}
+						</td>
+						<td>
+							<p></p>
+						</td>
+						<td>
+							<p></p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h3>Armor</h3>
+			<table style="width:100%;border-collapse:collapse;table-layout:fixed">
+				<thead>
+					<tr>
+						<th style="width:40%"><strong>Personal Armor</strong></th>
+						<th style="width:20%"><strong>Location</strong></th>
+						<th style="width:20%"><strong>Armor Type</strong></th>
+						<th style="width:5%"><strong>M</strong></th>
+						<th style="width:5%"><strong>B</strong></th>
+						<th style="width:5%"><strong>E</strong></th>
+						<th style="width:5%"><strong>X</strong></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+				</tbody>
+			</table>
+			<h3>Weapons</h3>
+			<table style="width:100%;border-collapse:collapse;table-layout:fixed">
+				<thead>
+					<tr>
+						<th style="width:20%"><strong>Weapon</strong></th>
+						<th style="width:20%"><strong>Skill</strong></th>
+						<th style="width:5%"><strong>AP</strong></th>
+						<th style="width:5%"><strong>BD</strong></th>
+						<th style="width:15%"><strong>Range</strong></th>
+						<th style="width:15%"><strong>Ammo</strong></th>
+						<th style="width:20%"><strong>Notes</strong></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+					<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+				</tbody>
+			</table>
+        </div>
+
+        <div class="tab notes" data-group="primary" data-tab="notes">
+            <h2>Notes</h2>
+            <table style="width:100%;border-collapse:collapse;table-layout:fixed">
+                <tbody>
+                    <tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+					<tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+					<tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+					<tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+					<tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+					<tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+					<tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+					<tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+					<tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+					<tr><td contenteditable="true" style="height:20px; border-bottom:1px solid #eee"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</form>
