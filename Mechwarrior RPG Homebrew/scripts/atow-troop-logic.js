@@ -6,7 +6,8 @@ export class ATOWTroopSheet extends ActorSheet {
             template: "modules/mechwarrior-rpg-homebrew/templates/atow-troop-sheet.html",
             width: 850,
             height: 950,
-            resizable: true
+            resizable: true,
+			tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "main" }]
         });
     }
 

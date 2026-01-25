@@ -6,10 +6,11 @@ export class ATOWActorSheet extends ActorSheet {
             template: "modules/mechwarrior-rpg-homebrew/templates/atow-sheet.html",
             width: 850,
             height: 950,
-            resizable: true
+            resizable: true,
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "main" }]
         });
     }
-
+	
     /** @override */
     async getData() {
         const context = super.getData();
