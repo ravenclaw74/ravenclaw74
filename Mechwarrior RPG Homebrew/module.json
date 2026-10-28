@@ -4,7 +4,7 @@
   "description": "<p>Custom character sheet and compendiums for A Time of War / MechWarrior Destiny.</p>",
   "version": "1.0.0",
   "manifest": "https://raw.githubusercontent.com/ravenclaw74/ravenclaw74/refs/heads/main/Mechwarrior%20RPG%20Homebrew/module.json",
-  "download": "https://raw.githubusercontent.com/ravenclaw74/ravenclaw74/raw/main/Module%20Backups/mechwarrior-rpg-homebrew-v14.zip",
+  "download": "https://raw.githubusercontent.com/ravenclaw74/ravenclaw74/refs/head/main/Module%20Backups/mechwarrior-rpg-homebrew-v14.zip",
   "compatibility": {
     "minimum": "14",
     "verified": "14",
