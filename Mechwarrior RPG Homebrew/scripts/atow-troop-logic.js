@@ -1,7 +1,7 @@
 export class ATOWTroopSheet extends ActorSheet {
     /** @override */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["atow", "sheet", "actor", "npc", "atow-troop-sheet"],
             template: "modules/mechwarrior-rpg-homebrew/templates/atow-troop-sheet.html",
             width: 850,
@@ -38,15 +38,20 @@ export class ATOWTroopSheet extends ActorSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
-        html.find('[contenteditable="true"]').blur(async ev => {
-            const element = ev.currentTarget;
-            const field = element.getAttribute("name"); 
-            const value = element.innerText.trim();
-            
-            if (field) {
-                const updateValue = (value !== "" && !isNaN(value)) ? Number(value) : value;
-                await this.actor.update({ [field]: updateValue });
-            }
+        const container = html instanceof HTMLElement ? html : html[0];
+        if (!container) return;
+
+        container.querySelectorAll('[contenteditable="true"]').forEach(element => {
+            element.addEventListener("blur", async ev => {
+                const target = ev.currentTarget;
+                const field = target.getAttribute("name"); 
+                const value = target.innerText.trim();
+                
+                if (field) {
+                    const updateValue = (value !== "" && !isNaN(value)) ? Number(value) : value;
+                    await this.actor.update({ [field]: updateValue });
+                }
+            });
         });
     }
 }
