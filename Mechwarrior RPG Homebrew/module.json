@@ -4,8 +4,9 @@
   "description": "<p>Custom character sheet and compendiums for A Time of War / MechWarrior Destiny.</p>",
   "version": "1.0.0",
   "compatibility": {
-    "minimum": "13",
-    "verified": "13"
+    "minimum": "14",
+    "verified": "14",
+    "maximum": "14"
   },
   "esmodules": [
     "scripts/atow-logic.js",
