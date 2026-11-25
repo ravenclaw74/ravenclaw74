@@ -53,6 +53,7 @@ Wrong item types are rejected with a warning. Rows fill in automatically and sta
 Pack sources are in `src/packs/*.json`. With Foundry closed:
 
 ```
+Manifest URL: "https://raw.githubusercontent.com/ravenclaw74/ravenclaw74/main/Mechwarrior%20RPG%20Homebrew/module.json"
 node tools/build-packs.mjs     # JSON -> packs
 node tools/extract-packs.mjs   # packs -> JSON
 ```
