@@ -3,6 +3,9 @@
   "title": "Mechwarrior RPG Homebrew",
   "description": "<p>A Time of War / MechWarrior Destiny for the Simple Worldbuilding system: automated character, NPC and troop sheets with section-aware drag &amp; drop, the full Fantasy Grounds item library (skills, traits, weapons, armour, equipment), NPC and pregen compendiums, roll macros and tables.</p>",
   "version": "2.2.0",
+  "url": "https://github.com/ravenclaw74/ravenclaw74/tree/main/Mechwarrior%20RPG%20Homebrew",
+  "manifest": "https://raw.githubusercontent.com/ravenclaw74/ravenclaw74/main/Mechwarrior%20RPG%20Homebrew/module.json",
+  "download": "https://raw.githubusercontent.com/ravenclaw74/ravenclaw74/main/Module%20Backups/mechwarrior-rpg-homebrew.zip",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
