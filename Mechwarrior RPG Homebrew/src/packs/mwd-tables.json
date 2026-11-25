@@ -1,0 +1,2201 @@
+[
+ {
+  "_key": "!tables!BxeZtiMiZoCBGMtE",
+  "name": "Vehicle (Tracked/Wheeled) Hit Location Table",
+  "_id": "BxeZtiMiZoCBGMtE",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Combat%20Vehicle.png",
+  "description": "<p>When damaged: -2 Movement on 8+</p>",
+  "results": [
+   "VOw8WJEfhneV3IGp",
+   "laJva4Wev4K5jYo5",
+   "RjWqzRmvsrjPIBdF",
+   "aGpaYNGu8g476ZBb",
+   "juOnDO37OxHuxSHU",
+   "GV3yz05x1nb9gkFX",
+   "Tu8jZWfB1u5R0xjY",
+   "nbH4GfUtn9kZEhiy"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721870934170,
+   "modifiedTime": 1767045366731,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "2d6"
+ },
+ {
+  "_key": "!tables!jnEWVyynzlopqe3i",
+  "name": "Mech Arm Critical",
+  "_id": "jnEWVyynzlopqe3i",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Mech%20Arm.png",
+  "description": "",
+  "results": [
+   "s54U72KHg5IB00dr",
+   "3v2XAWwhrF30PxqW"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721797011069,
+   "modifiedTime": 1767045276103,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "1d6"
+ },
+ {
+  "_key": "!tables!joBPAnjAWJNsdMPJ",
+  "name": "Aero Hit Location Table",
+  "_id": "joBPAnjAWJNsdMPJ",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Aero%20Hit%20Loc.png",
+  "description": "<p>When damaged (2+ damage): Critical Hit on 8+</p>",
+  "results": [
+   "zP5NaQiySDLbsO9j",
+   "eMwCWn3uQlOq2Tmd",
+   "S6oXOJOEVSYXhHI8",
+   "dHiqTJgmaLJVVb4l",
+   "kC1xyQ2Kt8our943",
+   "p84s8o2lf77t4qFC",
+   "WATAmsdRpT41NSGa"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721871820188,
+   "modifiedTime": 1767045144808,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "2d6"
+ },
+ {
+  "_key": "!tables!MgcVHanRdawGgIXh",
+  "name": "VTOL Hit Location Table",
+  "_id": "MgcVHanRdawGgIXh",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/VTOL.png",
+  "description": "",
+  "results": [
+   "f4rav0Mq882Ui68z",
+   "l5PK7zbKvAh7bpqv",
+   "25ZwSXjK0cNuG6Io",
+   "pIULfQ8Ya37y28sd",
+   "YH13s4CBpGBVKt14",
+   "2MAsfQe1dYqjUkKT",
+   "TB7ns27vRJG7ft64",
+   "Sad2EmmJkiGrYq3A"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721871607676,
+   "modifiedTime": 1767045383831,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "2d6"
+ },
+ {
+  "_key": "!tables!nz5gI3H8GG40Nw9R",
+  "name": "Combat Vehicle Front Critical",
+  "_id": "nz5gI3H8GG40Nw9R",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Tank%20Front%20Crit.png",
+  "description": "",
+  "results": [
+   "hC9ZP3fjmEJ8PKYy",
+   "3Faazv0TpNurd9Wx",
+   "vQwPn62B5p3Vz93g"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721797205545,
+   "modifiedTime": 1767045193529,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "1d6"
+ },
+ {
+  "_key": "!tables!OK7RgTVzBv7wboQw",
+  "name": "Aerospace Fighter Critical",
+  "_id": "OK7RgTVzBv7wboQw",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Aero%20Critical.png",
+  "description": "",
+  "results": [
+   "EEzNDA6ytA3CT213",
+   "NV35Co6rMXbhSW02",
+   "Nx67Q2jDyxmFonp6",
+   "nklmj1zmwVB7Gujv",
+   "A2NUzu3v1eF70r7T",
+   "9kGHuaxbq1rDCat1",
+   "GpQT7iprxtTZ9zll",
+   "YVvB4ZjsWkt44cw4",
+   "oGUV145AmhatImoj"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721797508265,
+   "modifiedTime": 1767045156511,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "2d6"
+ },
+ {
+  "_key": "!tables!oL26i8vfXun9xQbM",
+  "name": "Mech Leg Critical",
+  "_id": "oL26i8vfXun9xQbM",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Mech%20Leg.png",
+  "description": "",
+  "results": [
+   "X8Uydn0b92g6xDFf",
+   "U8cntCzpLM9kJubY"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721797087789,
+   "modifiedTime": 1767045264931,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "1d6"
+ },
+ {
+  "_key": "!tables!PafuVb8o6iimxmh9",
+  "name": "Vehicle (Hover) Hit Location Table",
+  "_id": "PafuVb8o6iimxmh9",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Hover.png",
+  "description": "<p>When damaged: -2 Movement on 8+</p>",
+  "results": [
+   "nUWNpkiUGYWubIHy",
+   "fzk6U7UbdjxHop0A",
+   "GXQvvl8vE7xx7FEP",
+   "ZImR00DxFia8eeoi",
+   "MhjY4tqSuhyHMEhJ",
+   "tq5Gb69EufxLrUgG",
+   "eNNFw3AOCvPfs6hc",
+   "hRVuTLN6nYmRacjL"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721871215468,
+   "modifiedTime": 1767045348750,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "2d6"
+ },
+ {
+  "_key": "!tables!VWHZR8choUwccTbl",
+  "name": "Missile Damage",
+  "_id": "VWHZR8choUwccTbl",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Missile.png",
+  "description": "",
+  "results": [
+   "tuVWAdW7cvFiaXq5",
+   "OW0KApwEcoYBEUHc",
+   "MotoGUhdrpdWkP81",
+   "jnqtPE1TcV8dHDJ1"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721797884077,
+   "modifiedTime": 1767045319657,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "1d6"
+ },
+ {
+  "_key": "!tables!XgusQbmiF68yry1T",
+  "name": "Mech Hit Location Table",
+  "_id": "XgusQbmiF68yry1T",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Mech%20Hit%20Loc.png",
+  "description": "",
+  "results": [
+   "qf2Z11kR6UlEIOwS",
+   "WELWWNbZZDpBLSdX",
+   "SDjimoxUMGoAsxKk",
+   "s8cDRBlq0lpYGRmq",
+   "SWLPx1gkZciHjjZo",
+   "HyalBsWpg0A9wmC9",
+   "zg2292KL40xTvFPi"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721870554623,
+   "modifiedTime": 1767045304360,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "2d6"
+ },
+ {
+  "_key": "!tables!YwUxeHBUACNMIXhI",
+  "name": "Combat Vehicle Turret Critical",
+  "_id": "YwUxeHBUACNMIXhI",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Tank%20Turret%20Crit.png",
+  "description": "",
+  "results": [
+   "pDdEcWLZCC4OHcs3",
+   "8pXjZqS1KXcsvdkB",
+   "vxO42MUl7QqjmLYn"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721797308519,
+   "modifiedTime": 1767045254005,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "1d6"
+ },
+ {
+  "_key": "!tables!ZRQmelqmgTUpDeLX",
+  "name": "Combat Vehicle Rear Critical",
+  "_id": "ZRQmelqmgTUpDeLX",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Tank%20Rear%20Crit.png",
+  "description": "",
+  "results": [
+   "qGyRin99Pv6n8PX0",
+   "q4FLoo2eozKZ6Yfg"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721797387729,
+   "modifiedTime": 1767045206700,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "1d6"
+ },
+ {
+  "_key": "!tables!zWzwV8LsftOqVPmB",
+  "name": "Mech Torso Critical",
+  "_id": "zWzwV8LsftOqVPmB",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Mech%20Torso.png",
+  "description": "",
+  "results": [
+   "Mpp98rHWbzNiCc9h",
+   "zXKxPg1dvgGSk7J9",
+   "x9mh5fkRtb04ZI4b",
+   "TiPunB9jewXZR7Qa"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721796830295,
+   "modifiedTime": 1767045288229,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "1d6"
+ },
+ {
+  "_key": "!tables.results!BxeZtiMiZoCBGMtE.aGpaYNGu8g476ZBb",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   5,
+   6
+  ],
+  "drawn": false,
+  "_id": "aGpaYNGu8g476ZBb",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Side",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!BxeZtiMiZoCBGMtE.GV3yz05x1nb9gkFX",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   8,
+   9
+  ],
+  "drawn": false,
+  "_id": "GV3yz05x1nb9gkFX",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Side",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!BxeZtiMiZoCBGMtE.juOnDO37OxHuxSHU",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   7,
+   7
+  ],
+  "drawn": false,
+  "_id": "juOnDO37OxHuxSHU",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!BxeZtiMiZoCBGMtE.laJva4Wev4K5jYo5",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   3
+  ],
+  "drawn": false,
+  "_id": "laJva4Wev4K5jYo5",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Rear",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!BxeZtiMiZoCBGMtE.nbH4GfUtn9kZEhiy",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   12,
+   12
+  ],
+  "drawn": false,
+  "_id": "nbH4GfUtn9kZEhiy",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Turret (Critical Hit on 8+)",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!BxeZtiMiZoCBGMtE.RjWqzRmvsrjPIBdF",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   4,
+   4
+  ],
+  "drawn": false,
+  "_id": "RjWqzRmvsrjPIBdF",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!BxeZtiMiZoCBGMtE.Tu8jZWfB1u5R0xjY",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   10,
+   11
+  ],
+  "drawn": false,
+  "_id": "Tu8jZWfB1u5R0xjY",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Turret",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!BxeZtiMiZoCBGMtE.VOw8WJEfhneV3IGp",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "VOw8WJEfhneV3IGp",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front (Critical Hit on 8+)",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!jnEWVyynzlopqe3i.3v2XAWwhrF30PxqW",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   6
+  ],
+  "drawn": false,
+  "_id": "3v2XAWwhrF30PxqW",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Primary Weapon / Weapon Group is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!jnEWVyynzlopqe3i.s54U72KHg5IB00dr",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   1,
+   1
+  ],
+  "drawn": false,
+  "_id": "s54U72KHg5IB00dr",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Ammo explosion (Arm destroyed) OR Primary Weapon / Weapon Group is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!joBPAnjAWJNsdMPJ.dHiqTJgmaLJVVb4l",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   7,
+   7
+  ],
+  "drawn": false,
+  "_id": "dHiqTJgmaLJVVb4l",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Nose",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!joBPAnjAWJNsdMPJ.eMwCWn3uQlOq2Tmd",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   3
+  ],
+  "drawn": false,
+  "_id": "eMwCWn3uQlOq2Tmd",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Aft",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!joBPAnjAWJNsdMPJ.kC1xyQ2Kt8our943",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   8,
+   10
+  ],
+  "drawn": false,
+  "_id": "kC1xyQ2Kt8our943",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Wing",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!joBPAnjAWJNsdMPJ.p84s8o2lf77t4qFC",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   11,
+   11
+  ],
+  "drawn": false,
+  "_id": "p84s8o2lf77t4qFC",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Aft",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!joBPAnjAWJNsdMPJ.S6oXOJOEVSYXhHI8",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   4,
+   6
+  ],
+  "drawn": false,
+  "_id": "S6oXOJOEVSYXhHI8",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Wing",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!joBPAnjAWJNsdMPJ.WATAmsdRpT41NSGa",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   12,
+   12
+  ],
+  "drawn": false,
+  "_id": "WATAmsdRpT41NSGa",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Nose",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!joBPAnjAWJNsdMPJ.zP5NaQiySDLbsO9j",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "zP5NaQiySDLbsO9j",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Nose",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!MgcVHanRdawGgIXh.25ZwSXjK0cNuG6Io",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   4,
+   4
+  ],
+  "drawn": false,
+  "_id": "25ZwSXjK0cNuG6Io",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!MgcVHanRdawGgIXh.2MAsfQe1dYqjUkKT",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   8,
+   9
+  ],
+  "drawn": false,
+  "_id": "2MAsfQe1dYqjUkKT",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Side",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!MgcVHanRdawGgIXh.f4rav0Mq882Ui68z",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "f4rav0Mq882Ui68z",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front (Critical Hit on 8+)",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!MgcVHanRdawGgIXh.l5PK7zbKvAh7bpqv",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   3
+  ],
+  "drawn": false,
+  "_id": "l5PK7zbKvAh7bpqv",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Rear",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!MgcVHanRdawGgIXh.pIULfQ8Ya37y28sd",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   5,
+   6
+  ],
+  "drawn": false,
+  "_id": "pIULfQ8Ya37y28sd",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Side",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!MgcVHanRdawGgIXh.Sad2EmmJkiGrYq3A",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   12,
+   12
+  ],
+  "drawn": false,
+  "_id": "Sad2EmmJkiGrYq3A",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Rotor (Critical Hit on 8+)",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!MgcVHanRdawGgIXh.TB7ns27vRJG7ft64",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   10,
+   11
+  ],
+  "drawn": false,
+  "_id": "TB7ns27vRJG7ft64",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Rotor",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!MgcVHanRdawGgIXh.YH13s4CBpGBVKt14",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   7,
+   7
+  ],
+  "drawn": false,
+  "_id": "YH13s4CBpGBVKt14",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!nz5gI3H8GG40Nw9R.3Faazv0TpNurd9Wx",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "3Faazv0TpNurd9Wx",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Crew stunned. –2 to all Tests during all affected characters’ next Narration.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!nz5gI3H8GG40Nw9R.hC9ZP3fjmEJ8PKYy",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   1,
+   1
+  ],
+  "drawn": false,
+  "_id": "hC9ZP3fjmEJ8PKYy",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Crew Compartment hit. 3 Physical Damage to all crew.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!nz5gI3H8GG40Nw9R.vQwPn62B5p3Vz93g",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   6
+  ],
+  "drawn": false,
+  "_id": "vQwPn62B5p3Vz93g",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front Weapon Group is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!OK7RgTVzBv7wboQw.9kGHuaxbq1rDCat1",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   8,
+   9
+  ],
+  "drawn": false,
+  "_id": "9kGHuaxbq1rDCat1",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Wing Weapon Group is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!OK7RgTVzBv7wboQw.A2NUzu3v1eF70r7T",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   7,
+   7
+  ],
+  "drawn": false,
+  "_id": "A2NUzu3v1eF70r7T",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Engine Hit: Engine shielding is damaged. –1 Maximum Movement. Add +2 Heat tokens at the end of the unit’s next Narration. A second hit destroys the engine, which destroys the aerospace fighter.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!OK7RgTVzBv7wboQw.EEzNDA6ytA3CT213",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "EEzNDA6ytA3CT213",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Nose Weapon Group is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!OK7RgTVzBv7wboQw.GpQT7iprxtTZ9zll",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   10,
+   10
+  ],
+  "drawn": false,
+  "_id": "GpQT7iprxtTZ9zll",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Ammo explosion: unit is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!OK7RgTVzBv7wboQw.nklmj1zmwVB7Gujv",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   5,
+   6
+  ],
+  "drawn": false,
+  "_id": "nklmj1zmwVB7Gujv",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Wing Weapon Group is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!OK7RgTVzBv7wboQw.NV35Co6rMXbhSW02",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   3
+  ],
+  "drawn": false,
+  "_id": "NV35Co6rMXbhSW02",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Avionics are damaged: –2 to Piloting Tests.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!OK7RgTVzBv7wboQw.Nx67Q2jDyxmFonp6",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   4,
+   4
+  ],
+  "drawn": false,
+  "_id": "Nx67Q2jDyxmFonp6",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Fuel tank is hit: Roll 2D6: on 10+, the fuel tank explodes; unit is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!OK7RgTVzBv7wboQw.oGUV145AmhatImoj",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   12,
+   12
+  ],
+  "drawn": false,
+  "_id": "oGUV145AmhatImoj",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Cockpit Hit: Pilot takes 3 Physical damage.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!OK7RgTVzBv7wboQw.YVvB4ZjsWkt44cw4",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   11,
+   11
+  ],
+  "drawn": false,
+  "_id": "YVvB4ZjsWkt44cw4",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Bomb Damaged: Carried bomb is rendered useless; bomb does not explode.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!oL26i8vfXun9xQbM.U8cntCzpLM9kJubY",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   6
+  ],
+  "drawn": false,
+  "_id": "U8cntCzpLM9kJubY",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "–1 Maximum Movement.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!oL26i8vfXun9xQbM.X8Uydn0b92g6xDFf",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   1,
+   1
+  ],
+  "drawn": false,
+  "_id": "X8Uydn0b92g6xDFf",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Ammo explosion (Leg destroyed) OR Leg Weapon Group is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!PafuVb8o6iimxmh9.eNNFw3AOCvPfs6hc",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   10,
+   11
+  ],
+  "drawn": false,
+  "_id": "eNNFw3AOCvPfs6hc",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!PafuVb8o6iimxmh9.fzk6U7UbdjxHop0A",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   3
+  ],
+  "drawn": false,
+  "_id": "fzk6U7UbdjxHop0A",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Rear",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!PafuVb8o6iimxmh9.GXQvvl8vE7xx7FEP",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   4,
+   4
+  ],
+  "drawn": false,
+  "_id": "GXQvvl8vE7xx7FEP",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!PafuVb8o6iimxmh9.hRVuTLN6nYmRacjL",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   12,
+   12
+  ],
+  "drawn": false,
+  "_id": "hRVuTLN6nYmRacjL",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front (Critical Hit on 8+)",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!PafuVb8o6iimxmh9.MhjY4tqSuhyHMEhJ",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   7,
+   7
+  ],
+  "drawn": false,
+  "_id": "MhjY4tqSuhyHMEhJ",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!PafuVb8o6iimxmh9.nUWNpkiUGYWubIHy",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "nUWNpkiUGYWubIHy",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Front (Critical Hit on 8+)",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!PafuVb8o6iimxmh9.tq5Gb69EufxLrUgG",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   8,
+   9
+  ],
+  "drawn": false,
+  "_id": "tq5Gb69EufxLrUgG",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Side",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!PafuVb8o6iimxmh9.ZImR00DxFia8eeoi",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   5,
+   6
+  ],
+  "drawn": false,
+  "_id": "ZImR00DxFia8eeoi",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Side",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!VWHZR8choUwccTbl.jnqtPE1TcV8dHDJ1",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   4,
+   6
+  ],
+  "drawn": false,
+  "_id": "jnqtPE1TcV8dHDJ1",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "No Damage",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!VWHZR8choUwccTbl.MotoGUhdrpdWkP81",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   3
+  ],
+  "drawn": false,
+  "_id": "MotoGUhdrpdWkP81",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "3 Damage",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!VWHZR8choUwccTbl.OW0KApwEcoYBEUHc",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "OW0KApwEcoYBEUHc",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "2 Damage",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!VWHZR8choUwccTbl.tuVWAdW7cvFiaXq5",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   1,
+   1
+  ],
+  "drawn": false,
+  "_id": "tuVWAdW7cvFiaXq5",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "1 Damage",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!XgusQbmiF68yry1T.HyalBsWpg0A9wmC9",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   10,
+   11
+  ],
+  "drawn": false,
+  "_id": "HyalBsWpg0A9wmC9",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Arm",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!XgusQbmiF68yry1T.qf2Z11kR6UlEIOwS",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "qf2Z11kR6UlEIOwS",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Torso (Critical Hit on 8+)",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!XgusQbmiF68yry1T.s8cDRBlq0lpYGRmq",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   6,
+   8
+  ],
+  "drawn": false,
+  "_id": "s8cDRBlq0lpYGRmq",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Torso",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!XgusQbmiF68yry1T.SDjimoxUMGoAsxKk",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   5,
+   5
+  ],
+  "drawn": false,
+  "_id": "SDjimoxUMGoAsxKk",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Leg",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!XgusQbmiF68yry1T.SWLPx1gkZciHjjZo",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   9,
+   9
+  ],
+  "drawn": false,
+  "_id": "SWLPx1gkZciHjjZo",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Leg",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!XgusQbmiF68yry1T.WELWWNbZZDpBLSdX",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   4
+  ],
+  "drawn": false,
+  "_id": "WELWWNbZZDpBLSdX",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Arm",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!XgusQbmiF68yry1T.zg2292KL40xTvFPi",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   12,
+   12
+  ],
+  "drawn": false,
+  "_id": "zg2292KL40xTvFPi",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Head (Requires Plot Point to Hit)",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!YwUxeHBUACNMIXhI.8pXjZqS1KXcsvdkB",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "8pXjZqS1KXcsvdkB",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Crew stunned. –2 to all Tests during all affected characters’ next Narration.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!YwUxeHBUACNMIXhI.pDdEcWLZCC4OHcs3",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   1,
+   1
+  ],
+  "drawn": false,
+  "_id": "pDdEcWLZCC4OHcs3",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Crew Compartment hit. 3 Physical Damage to all crew.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!YwUxeHBUACNMIXhI.vxO42MUl7QqjmLYn",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   6
+  ],
+  "drawn": false,
+  "_id": "vxO42MUl7QqjmLYn",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Turret Weapon Group is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!ZRQmelqmgTUpDeLX.q4FLoo2eozKZ6Yfg",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   6
+  ],
+  "drawn": false,
+  "_id": "q4FLoo2eozKZ6Yfg",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "–1 Maximum Movement.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!ZRQmelqmgTUpDeLX.qGyRin99Pv6n8PX0",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   1,
+   2
+  ],
+  "drawn": false,
+  "_id": "qGyRin99Pv6n8PX0",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Ammo explosion (vehicle destroyed) OR –1 Maximum Movement.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!zWzwV8LsftOqVPmB.Mpp98rHWbzNiCc9h",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   1,
+   1
+  ],
+  "drawn": false,
+  "_id": "Mpp98rHWbzNiCc9h",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Ammo explosion (’Mech destroyed) OR Primary Weapon / Torso Weapon Group is destroyed.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!zWzwV8LsftOqVPmB.TiPunB9jewXZR7Qa",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   5,
+   6
+  ],
+  "drawn": false,
+  "_id": "TiPunB9jewXZR7Qa",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Engine shielding is damaged. Gain 1 Heat token at the end of each of this ’Mech’s Narrations. A second engine critical hit destroys the engine, which destroys the ’Mech.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!zWzwV8LsftOqVPmB.x9mh5fkRtb04ZI4b",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   4
+  ],
+  "drawn": false,
+  "_id": "x9mh5fkRtb04ZI4b",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Gyro is damaged. –2 penalty to Piloting Tests. A second hit renders the ’Mech unable to spend Movement.",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!zWzwV8LsftOqVPmB.zXKxPg1dvgGSk7J9",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "zXKxPg1dvgGSk7J9",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Primary Weapon / Torso Weapon Group is destroyed.",
+  "name": ""
+ }
+]

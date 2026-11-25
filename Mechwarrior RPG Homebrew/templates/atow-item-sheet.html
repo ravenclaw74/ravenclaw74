@@ -1,0 +1,41 @@
+<form class="{{cssClass}} atow-sheet" autocomplete="off">
+    <header class="atow-header">
+        <img class="profile" src="{{item.img}}" data-edit="img" data-tooltip="{{item.name}}" />
+        <div class="atow-item-title">
+            <input type="text" name="name" value="{{item.name}}" placeholder="Name" {{#unless editable}}disabled{{/unless}} />
+            <select name="flags.{{moduleId}}.category" {{#unless editable}}disabled{{/unless}}>
+                {{#unless category}}<option value="" selected>— choose category —</option>{{/unless}}
+                {{#each categories}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+            </select>
+        </div>
+    </header>
+
+    {{#if fields.length}}
+    <div class="atow-item-fields">
+        {{#each fields}}
+        <div class="form-group">
+            <label>{{label}}</label>
+            {{#if options}}
+            <select name="{{name}}" {{#unless @root.editable}}disabled{{/unless}}>
+                {{#each options}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+            </select>
+            {{else}}
+            <input type="{{#if (eq type "number")}}number{{else}}text{{/if}}" step="any" name="{{name}}" value="{{value}}" {{#unless @root.editable}}disabled{{/unless}} />
+            {{/if}}
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <p class="atow-hint">Choose a category to edit this item's ATOW statistics.</p>
+    {{/if}}
+
+    {{#if notesName}}
+    <h3>Notes</h3>
+    <div class="atow-biography">
+        {{editor enrichedNotes target=notesName button=true editable=editable engine="prosemirror"}}
+    </div>
+    {{/if}}
+
+    <h3>Card</h3>
+    <div class="atow-item-card">{{{enrichedDescription}}}</div>
+</form>

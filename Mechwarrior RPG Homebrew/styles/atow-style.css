@@ -1,81 +1,139 @@
-/* --- Main Sheet Container --- */
+/* ==========================================================================
+   Mechwarrior RPG Homebrew — ATOW sheets
+   ========================================================================== */
+
+.atow.sheet .window-content {
+    padding: 0;
+    background: #f4f3ef;
+    color: #191813;
+}
+
 .atow-sheet {
-    padding: 15px;
-    background: #ffffff;
+    padding: 10px 14px;
     font-family: "Signika", "Palatino Linotype", serif;
+    color: #191813;
+    height: 100%;
+    overflow-y: auto;
 }
 
-/* --- Headers --- */
-.atow-sheet h1 {
-    border-bottom: 3px solid #000;
-    margin-bottom: 15px;
+/* --- Header --- */
+.atow-sheet .atow-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 3px solid #2b2a26;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+}
+.atow-sheet .atow-header .profile {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+    object-fit: cover;
+    border: 1px solid #2b2a26;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.atow-sheet .atow-header h1 {
+    margin: 0;
+    border: none;
+    font-size: 1.8em;
+}
+.atow-sheet .atow-subtitle {
+    font-size: 0.85em;
+    color: #6b6a63;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
+/* --- Headings --- */
 .atow-sheet h2 {
     border-bottom: 2px solid #444;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin: 14px 0 6px;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 1.2em;
 }
-
 .atow-sheet h3 {
     border-bottom: 1px solid #666;
-    margin-top: 15px;
+    margin: 12px 0 6px;
     color: #333;
+    font-size: 1.05em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* --- Table Styling (preserving your source widths) --- */
-.atow-sheet table {
+.atow-sheet .atow-row { display: flex; gap: 20px; }
+.atow-sheet .atow-col { min-width: 0; }
+
+/* --- Tables --- */
+.atow-sheet table.atow-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 15px;
-    table-layout: fixed; /* Ensures the % widths in your HTML are respected [cite: 1, 17] */
+    table-layout: fixed;
+    margin: 0 0 10px;
+    background: transparent;
+    border: none;
 }
-
-.atow-sheet th {
-    background: rgba(0, 0, 0, 0.05);
-    padding: 5px;
-    font-size: 0.9em;
+.atow-sheet .atow-table th {
+    background: rgba(0, 0, 0, 0.06);
+    padding: 3px 4px;
+    font-size: 0.85em;
+    text-align: left;
     color: #111;
+    text-shadow: none;
 }
-
-.atow-sheet td {
-    padding: 4px;
-    border-bottom: 1px solid #eeeeee;
-    vertical-align: middle;
-}
-
-/* Add this to prevent cell collapsing on blank characters */
-.atow-sheet td[contenteditable="true"] {
-    min-width: 50px;
-    display: inline-block; /* Helps maintain height in some browsers */
-    width: 100%;
-}
-
-/* --- Contenteditable Areas --- */
-[contenteditable="true"] {
-    background: rgba(0, 0, 0, 0.02);
-    min-height: 1.2em;
-    border-radius: 3px;
+.atow-sheet .atow-table td {
     padding: 2px 4px;
-    transition: background 0.2s;
+    border-bottom: 1px solid #e2e0d8;
+    vertical-align: middle;
+    overflow-wrap: anywhere;
 }
+.atow-sheet .atow-table tr:nth-child(even) { background: transparent; }
+.atow-sheet .atow-table th.ctl,
+.atow-sheet .atow-table td.ctl {
+    width: 26px;
+    text-align: center;
+    white-space: nowrap;
+    padding: 0 2px;
+}
+.atow-sheet .atow-table thead th.ctl:last-child,
+.atow-sheet .atow-table td.ctl:last-child { width: 44px; }
+.atow-sheet .atow-table td.ctl a { margin: 0 2px; color: #4b4a44; }
+.atow-sheet .atow-table td.ctl a:hover { color: #ff6400; text-shadow: none; }
+.atow-sheet .atow-table tr.empty td.ctl a { visibility: hidden; }
+.atow-sheet .atow-table tr.linked td:nth-child(2) { font-weight: 600; }
+.atow-sheet .atow-table td.derived {
+    color: #6b6a63;
+    font-style: italic;
+    white-space: nowrap;
+}
+.atow-sheet .atow-kv td:first-child { width: 28%; }
 
-[contenteditable="true"]:hover, 
-[contenteditable="true"]:focus {
+/* --- Editable cells --- */
+.atow-sheet [contenteditable="true"] {
+    background: rgba(0, 0, 0, 0.025);
+    min-height: 1.3em;
+    border-radius: 3px;
+    transition: background 0.15s;
+    cursor: text;
+}
+.atow-sheet [contenteditable="true"]:hover,
+.atow-sheet [contenteditable="true"]:focus {
     background: #fffdf0;
     outline: 1px solid #7a7971;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
+.atow-sheet [contenteditable="false"] { cursor: default; }
 
-/* --- Macro Button Styling (The "Enriched" Links) --- */
-/* This transforms the @UUID text into a professional button */
-.atow-sheet .content-link {
+/* --- Buttons and macro links --- */
+.atow-sheet .content-link,
+.atow-sheet .atow-button {
     background: #4b4a44;
     color: #ffffff !important;
-    border: 1px solid #000000;
-    padding: 3px 10px;
+    border: 1px solid #000;
+    padding: 2px 9px;
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
@@ -83,62 +141,110 @@
     align-items: center;
     gap: 6px;
     white-space: nowrap;
-    box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
-
-.atow-sheet .content-link:hover {
+.atow-sheet .content-link:hover,
+.atow-sheet .atow-button:hover {
     background: #636259;
     border-color: #ff6400;
+    text-shadow: none;
+}
+.atow-sheet .content-link i,
+.atow-sheet .atow-button i { color: #ff6400; }
+.atow-sheet .atow-macro-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 4px 0 10px;
+}
+.atow-sheet .atow-mini {
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #4b4a44;
+    cursor: pointer;
+}
+.atow-sheet .atow-mini:hover { color: #ff6400; text-shadow: none; }
+.atow-sheet .atow-hint,
+.atow-sheet .atow-drop-hint {
+    font-size: 0.82em;
+    color: #6b6a63;
+    margin: 2px 0 6px;
 }
 
-/* Style the d20 icon inside the button */
-.atow-sheet .content-link i {
-    color: #ff6400;
-    text-shadow: 0 0 2px #000;
-}
-
-/* --- Flexbox Adjustment --- */
-.atow-sheet div[style*="display:flex"] {
-    gap: 20px; /* Adds spacing between the side-by-side tables [cite: 34] */
-}
-
-/* --- Horizontal Rules --- */
-.atow-sheet hr {
-    border: 0;
-    border-top: 2px double #888;
-    margin: 20px 0;
-}
-
-/* --- Tabs Navigation --- */
+/* --- Tabs --- */
 .atow-sheet .sheet-tabs {
     flex: 0;
     display: flex;
-    border-top: 1px solid #AAA;
-    border-bottom: 1px solid #AAA;
-    margin-bottom: 10px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 8px;
 }
-
 .atow-sheet .sheet-tabs .item {
+    flex: 1;
     padding: 5px 10px;
-    border-right: 1px solid #AAA;
+    border-right: 1px solid #aaa;
     text-align: center;
     font-weight: bold;
 }
-
-.atow-sheet .sheet-tabs .item:last-child {
-    border-right: none;
-}
-
+.atow-sheet .sheet-tabs .item:last-child { border-right: none; }
 .atow-sheet .sheet-tabs .item.active {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.07);
     text-shadow: 0 0 5px #4b4a44;
 }
+.atow-sheet .tab { display: none; }
+.atow-sheet .tab.active { display: block; }
 
-/* --- Tab Content Visibility --- */
-.atow-sheet .tab {
-    display: none;
+/* --- Drag & drop zones --- */
+.atow-sheet .mwrpg-drop-zone { transition: background 0.15s, outline-color 0.15s; outline: 2px dashed transparent; outline-offset: -2px; }
+.atow-sheet .mwrpg-drop-zone.drag-over,
+.atow-sheet.mwrpg-drop-zone.drag-over {
+    outline-color: #ff6400;
+    background: rgba(255, 100, 0, 0.07);
 }
+.atow-sheet .sheet-tabs .item.mwrpg-drop-zone.drag-over { background: rgba(255, 100, 0, 0.25); }
 
-.atow-sheet .tab.active {
-    display: block;
+/* --- Biography / editor --- */
+.atow-sheet .atow-biography {
+    min-height: 120px;
+    border: 1px solid #ccc9bd;
+    border-radius: 4px;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
 }
+.atow-sheet .atow-biography .editor { min-height: 110px; }
+
+/* --- Item sheet --- */
+.atow-item-sheet .atow-item-title { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.atow-item-sheet .atow-item-title input[name="name"] { font-size: 1.4em; height: auto; font-weight: bold; }
+.atow-item-sheet .atow-item-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 14px;
+    margin: 6px 0 10px;
+}
+.atow-item-sheet .atow-item-fields .form-group { margin: 0; }
+.atow-item-sheet .atow-item-fields label { flex: 1.2; font-size: 0.9em; }
+.atow-item-sheet .atow-item-card { margin-top: 4px; }
+
+/* --- Chat cards --- */
+.atow-chat header { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid #4b4a44; margin-bottom: 4px; }
+.atow-chat header h3 { margin: 0; border: none; font-size: 1.1em; }
+.atow-chat header span { font-size: 0.8em; color: #6b6a63; }
+.atow-chat table { margin: 0; font-size: 0.9em; background: transparent; border: none; }
+.atow-chat th { text-align: left; width: 45%; background: transparent; color: inherit; padding: 1px 3px; }
+.atow-chat td { padding: 1px 3px; }
+.atow-chat .atow-result {
+    margin-top: 4px;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+}
+.atow-chat .atow-result.success { background: #2e7d32; }
+.atow-chat .atow-result.failure { background: #8b1a1a; }
+.atow-chat .atow-note { font-size: 0.85em; font-style: italic; margin-top: 3px; }
+
+.atow-dialog .form-group { margin: 4px 0; }

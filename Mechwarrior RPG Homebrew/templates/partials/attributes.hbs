@@ -1,0 +1,22 @@
+<table class="atow-table atow-attributes">
+    <thead>
+        <tr>
+            <th style="width:18%">Attribute</th>
+            <th style="width:20%">Value</th>
+            <th style="width:14%" data-tooltip="Link attribute modifier">Link</th>
+            <th style="width:24%">Check</th>
+            {{#if showXp}}<th style="width:24%" data-tooltip="Entering XP sets the attribute value (XP ÷ 100)">XP</th>{{/if}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each attributes}}
+        <tr>
+            <td><strong>{{label}}</strong></td>
+            <td contenteditable="true" name="system.attributes.{{key}}.value">{{value}}</td>
+            <td class="derived">{{link}}</td>
+            <td><a class="atow-button" data-action="roll-attribute" data-attribute="{{key}}" data-tooltip="Roll vs TN 12 (Shift-click: modifiers / double check)"><i class="fas fa-dice-d6"></i> {{label}}</a></td>
+            {{#if ../showXp}}<td contenteditable="true" name="system.attributes.{{key}}.xp">{{xp}}</td>{{/if}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

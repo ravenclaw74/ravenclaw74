@@ -1,23 +1,63 @@
 {
   "id": "mechwarrior-rpg-homebrew",
   "title": "Mechwarrior RPG Homebrew",
-  "description": "<p>Custom character sheet and compendiums for A Time of War / MechWarrior Destiny.</p>",
-  "version": "1.0.0",
+  "description": "<p>A Time of War / MechWarrior Destiny for the Simple Worldbuilding system: automated character, NPC and troop sheets with section-aware drag &amp; drop, the full Fantasy Grounds item library (skills, traits, weapons, armour, equipment), NPC and pregen compendiums, roll macros and tables.</p>",
+  "version": "2.2.0",
   "compatibility": {
     "minimum": "13",
-    "verified": "13"
+    "verified": "14"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "worldbuilding",
+        "type": "system",
+        "compatibility": {}
+      }
+    ]
   },
   "esmodules": [
     "scripts/atow-logic.js",
-	"scripts/atow-troop-logic.js",
+    "scripts/atow-troop-logic.js",
     "scripts/atow-npc-logic.js"
   ],
   "styles": [
-    {
-      "src": "styles/atow-style.css"
-    }
+    "styles/atow-style.css"
   ],
   "packs": [
+    {
+      "name": "atow-items",
+      "label": "ATOW Items",
+      "path": "packs/atow-items",
+      "type": "Item",
+      "system": "worldbuilding",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "atow-actors",
+      "label": "ATOW Actors",
+      "path": "packs/atow-actors",
+      "type": "Actor",
+      "system": "worldbuilding",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "atow-npcs",
+      "label": "ATOW NPCs & Pregens",
+      "path": "packs/atow-npcs",
+      "type": "Actor",
+      "system": "worldbuilding",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
     {
       "name": "atow-checks",
       "label": "ATOW Checks",
@@ -85,29 +125,57 @@
       }
     },
     {
-      "name": "atow-actors",
-      "label": "ATOW Actors",
-      "path": "packs/atow-actors",
-      "type": "Actor",
+      "name": "cbt-as-tables",
+      "label": "CBT/AS Tables",
+      "path": "packs/cbt-as-tables",
+      "type": "Macro",
       "system": "worldbuilding",
       "ownership": {
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
-    },
+    }
+  ],
+  "packFolders": [
     {
-      "name": "cbt-as-tables",
-      "label": "CBT/AS Tables",
-      "path": "packs/cbt-as-tables",
-      "type": "Macro",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      },
-      "system": "worldbuilding"
+      "name": "MechWarrior RPG",
+      "sorting": "m",
+      "color": "#4b4a44",
+      "packs": [],
+      "folders": [
+        {
+          "name": "A Time of War",
+          "sorting": "m",
+          "packs": [
+            "atow-items",
+            "atow-actors",
+            "atow-npcs",
+            "atow-checks",
+            "atow-tables",
+            "atow-rulebooks"
+          ]
+        },
+        {
+          "name": "MechWarrior Destiny",
+          "sorting": "m",
+          "packs": [
+            "mwd-checks",
+            "mwd-tables",
+            "mwd-rulebooks"
+          ]
+        },
+        {
+          "name": "Classic BattleTech / Alpha Strike",
+          "sorting": "m",
+          "packs": [
+            "cbt-as-tables"
+          ]
+        }
+      ]
     }
   ],
   "flags": {
     "canUpload": true
-  }
+  },
+  "socket": true
 }

@@ -1,0 +1,26 @@
+<table class="atow-table atow-{{table.group}}">
+    <thead>
+        <tr>
+            <th class="ctl"></th>
+            {{#each table.columns}}<th style="width:{{width}}">{{label}}</th>{{/each}}
+            <th class="ctl"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each table.rows}}
+        <tr data-slot="{{key}}" data-group="{{group}}" class="{{#if empty}}empty{{/if}}{{#if itemId}} linked{{/if}}">
+            <td class="ctl">
+                {{#if rollable}}
+                <a class="atow-roll" data-action="{{#if (eq group "weapons")}}roll-weapon{{else}}roll-skill{{/if}}"
+                   data-tooltip="{{#if (eq group "weapons")}}Attack: opens the Melee/Ranged Attack dialog filled in (Shift-click: quick roll){{else}}Roll skill (Shift-click: modifiers){{/if}}"><i class="fas {{#if (eq group "weapons")}}fa-crosshairs{{else}}fa-dice-d6{{/if}}"></i></a>
+                {{/if}}
+            </td>
+            {{#each cells}}<td contenteditable="true" name="{{name}}" data-field="{{field}}">{{value}}</td>{{/each}}
+            <td class="ctl">
+                {{#if itemId}}<a data-action="open-item" data-tooltip="Open item"><i class="fas fa-book-open"></i></a>{{/if}}
+                {{#unless empty}}{{#if @root.editable}}<a data-action="clear-row" data-tooltip="Clear row (removes linked item)"><i class="fas fa-times"></i></a>{{/if}}{{/unless}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

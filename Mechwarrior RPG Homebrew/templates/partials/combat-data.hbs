@@ -1,0 +1,28 @@
+<h2>Combat Data</h2>
+<table class="atow-table atow-combat-data">
+    <tbody>
+        <tr>
+            <td><strong>Standard Damage</strong></td>
+            <td contenteditable="true" name="system.combat.damage.standard">{{system.combat.damage.standard}}</td>
+            <td class="derived" data-tooltip="Damage capacity = BOD × 2">/ {{derived.standardMax}}</td>
+            <td><strong>Fatigue Damage</strong></td>
+            <td contenteditable="true" name="system.combat.damage.fatigue">{{system.combat.damage.fatigue}}</td>
+            <td class="derived" data-tooltip="Fatigue capacity = WIL × 2">/ {{derived.fatigueMax}}</td>
+        </tr>
+        <tr>
+            <td><strong>Stun</strong></td>
+            <td><input type="checkbox" name="system.combat.stun" {{checked system.combat.stun}}></td>
+            <td></td>
+            <td><strong>Unconscious</strong></td>
+            <td><input type="checkbox" name="system.combat.unconscious" {{checked system.combat.unconscious}}></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<div class="atow-macro-bar">
+    <span>{{{enrichedMacros.initiative}}}</span>
+    <span>{{{enrichedMacros.meleeAttack}}}</span>
+    <span>{{{enrichedMacros.rangedAttack}}}</span>
+    <span>{{{enrichedMacros.hitLocation}}}</span>
+</div>
+<p class="atow-hint"><i class="fas fa-crosshairs"></i> Click a weapon's crosshair to open the attack dialog filled in from this sheet. Shift-click for a quick roll.</p>

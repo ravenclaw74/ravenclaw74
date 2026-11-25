@@ -1,0 +1,613 @@
+[
+ {
+  "_key": "!folders!vaPVeRxUZbaOwJkk",
+  "type": "Macro",
+  "folder": null,
+  "name": "Attribute Checks",
+  "color": null,
+  "sorting": "a",
+  "_id": "vaPVeRxUZbaOwJkk",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.346",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1752362389711,
+   "modifiedTime": 1752362389711,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  }
+ },
+ {
+  "_key": "!macros!0WhvAiJh3NgtVQWl",
+  "name": "WIL Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "icons/svg/dice-target.svg",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>WIL Value:</label>\n      <input type=\"number\" name=\"attributeValue\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" name=\"modifiers\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"WIL Attribute Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let attr = parseInt(html.find('[name=\"attributeValue\"]').val());\n        let mod = parseInt(html.find('[name=\"modifiers\"]').val());\n        let roll = new Roll(\"2d6 + @attr + @mod\", { attr, mod });\n        await roll.evaluate();\n        let margin = roll.total - 12;\n        let result = getMarginDescription(margin);\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `WIL Check<br>WIL: ${attr} + ${mod}<br>Roll: ${roll.total}<br>Margin: ${margin}<br>${result}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": "vaPVeRxUZbaOwJkk",
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.346",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1752362415405,
+   "modifiedTime": 1752362415405,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "_id": "0WhvAiJh3NgtVQWl",
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  }
+ },
+ {
+  "_key": "!macros!1ZklyZtLbpmnnBHq",
+  "name": "Initiative Roll",
+  "type": "script",
+  "_id": "1ZklyZtLbpmnnBHq",
+  "author": "aVx50qMPICyTFLDL",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Initiative.png",
+  "scope": "global",
+  "command": "// Prompt the user to choose the type of initiative roll\nnew Dialog({\n    title: \"Initiative Roll\",\n    content: `\n    <form>\n        <div class=\"form-group\">\n            <label>Initiative Type:</label>\n            <select id=\"initiative-type\" name=\"initiative-type\">\n                <option value=\"basic\">Basic Initiative (2d6)</option>\n                <option value=\"combat-paralysis\">Initiative (Combat Paralysis) (3d6, choose lowest 2)</option>\n                <option value=\"combat-sense\">Initiative (Combat Sense) (3d6, choose highest 2)</option>\n            </select>\n        </div>\n        <div class=\"form-group\">\n            <label>Tactics Skill:</label>\n            <input type=\"number\" id=\"tactics-skill\" name=\"tactics-skill\" value=\"0\">\n        </div>\n        <div class=\"form-group\">\n            <label>Leadership Skill:</label>\n            <input type=\"number\" id=\"leadership-skill\" name=\"leadership-skill\" value=\"0\">\n        </div>\n    </form>\n    `,\n    buttons: {\n        roll: {\n            icon: \"<i class='fas fa-dice'></i>\",\n            label: \"Roll\",\n            callback: async (html) => {\n                const initiativeType = html.find('[name=\"initiative-type\"]').val();\n                const tacticsSkill = parseInt(html.find('[name=\"tactics-skill\"]').val()) || 0;\n                const leadershipSkill = parseInt(html.find('[name=\"leadership-skill\"]').val()) || 0;\n                \n                let rollFormula = \"\";\n                let rollDescription = \"\";\n\n                switch (initiativeType) {\n                    case \"basic\":\n                        rollFormula = \"2d6\";\n                        rollDescription = \"Basic\";\n                        break;\n                    case \"combat-paralysis\":\n                        rollFormula = \"3d6kl2\";\n                        rollDescription = \"Combat Paralysis\";\n                        break;\n                    case \"combat-sense\":\n                        rollFormula = \"3d6kh2\";\n                        rollDescription = \"Combat Sense\";\n                        break;\n                }\n\n                // Roll the dice\n                let roll = new Roll(`${rollFormula} + @tactics + @leadership`, {\n                    tactics: tacticsSkill,\n                    leadership: leadershipSkill\n                });\n                await roll.evaluate();\n\n                // Send the result to chat\n                roll.toMessage({\n                    speaker: ChatMessage.getSpeaker(),\n                    flavor: `Initiative Roll (${rollDescription})`\n                });\n\n                // Add the result to the Combat Tracker (selected token, else your character)\n                const setInitiative = game.combat?.combatants.find(c => c.tokenId === canvas.tokens.controlled[0]?.id)\n                    ?? game.combat?.combatants.find(c => c.actorId === game.user.character?.id);\n                if (setInitiative) await game.combat.setInitiative(setInitiative.id, roll.total);\n            }\n        },\n        cancel: {\n            icon: \"<i class='fas fa-times'></i>\",\n            label: \"Cancel\"\n        }\n    },\n    default: \"roll\"\n}).render(true);",
+  "folder": null,
+  "sort": 100000,
+  "ownership": {
+   "default": 0,
+   "aVx50qMPICyTFLDL": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "custom-system-builder",
+   "systemVersion": "3.2.5",
+   "coreVersion": "13.351",
+   "createdTime": 1720170546431,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!2GjAtXoL93mgMr3Q",
+  "name": "Basic Melee Combat Roll",
+  "type": "script",
+  "_id": "2GjAtXoL93mgMr3Q",
+  "author": "J4g1S80fPvLoq9Vy",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Basic%20Melee%20Combat.png",
+  "scope": "global",
+  "command": "let skillsList = [\n  \"Martial Arts\", \"Melee Weapons\"\n];\n\nlet skillOptions = skillsList.map(skill => `<option value=\"${skill}\">${skill}</option>`).join('');\n\nlet dialogContent = `\n  <form>\n    <h3>PC</h3>\n    <div class=\"form-group\">\n      <label>Skill:</label>\n      <select id=\"skill_char1\" name=\"skill_char1\">\n        ${skillOptions}\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Skill Level:</label>\n      <input type=\"number\" id=\"skillLevel_char1\" name=\"skillLevel_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Link (Attribute Modifier):</label>\n      <input type=\"number\" id=\"link_char1\" name=\"link_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Complexity:</label>\n      <select id=\"complexity_char1\" name=\"complexity_char1\">\n        <option value=\"8\">Simple-Advanced (8)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers_char1\" name=\"modifiers_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude:</label>\n      <input type=\"checkbox\" id=\"naturalAptitude_char1\" name=\"naturalAptitude_char1\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Base Damage (BD):</label>\n      <input type=\"number\" id=\"bd_char1\" name=\"bd_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Armor Piercing (AP):</label>\n      <input type=\"number\" id=\"ap_char1\" name=\"ap_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Target's Barrier Armor Rating (BAR):</label>\n      <input type=\"number\" id=\"bar_char1\" name=\"bar_char1\" value=\"0\"/>\n    </div>\n    <h3>NPC</h3>\n    <div class=\"form-group\">\n      <label>Skill:</label>\n      <select id=\"skill_char2\" name=\"skill_char2\">\n        ${skillOptions}\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Skill Level:</label>\n      <input type=\"number\" id=\"skillLevel_char2\" name=\"skillLevel_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Link (Attribute Modifier):</label>\n      <input type=\"number\" id=\"link_char2\" name=\"link_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Complexity:</label>\n      <select id=\"complexity_char2\" name=\"complexity_char2\">\n        <option value=\"8\">Simple-Advanced (8)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers_char2\" name=\"modifiers_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude:</label>\n      <input type=\"checkbox\" id=\"naturalAptitude_char2\" name=\"naturalAptitude_char2\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Base Damage (BD):</label>\n      <input type=\"number\" id=\"bd_char2\" name=\"bd_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Armor Piercing (AP):</label>\n      <input type=\"number\" id=\"ap_char2\" name=\"ap_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Target's Barrier Armor Rating (BAR):</label>\n      <input type=\"number\" id=\"bar_char2\" name=\"bar_char2\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"Melee Combat\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        // PC Roll\n        let skill_char1 = html.find('[name=\"skill_char1\"]').val();\n        let skillLevel_char1 = parseInt(html.find('[name=\"skillLevel_char1\"]').val());\n        let link_char1 = parseInt(html.find('[name=\"link_char1\"]').val());\n        let complexity_char1 = parseInt(html.find('[name=\"complexity_char1\"]').val());\n        let modifiers_char1 = parseInt(html.find('[name=\"modifiers_char1\"]').val());\n        let naturalAptitude_char1 = html.find('[name=\"naturalAptitude_char1\"]').is(':checked');\n        let rollFormula_char1 = naturalAptitude_char1 ? \"3d6kh2x12 + @skillLevel + @link + @modifiers\" : \"2d6x12 + @skillLevel + @link + @modifiers\";\n        let roll_char1 = new Roll(rollFormula_char1, {skillLevel: skillLevel_char1, link: link_char1, modifiers: modifiers_char1});\n        await roll_char1.toMessage();\n        \n        let result_char1 = roll_char1.total;\n        let margin_char1 = result_char1 - complexity_char1; // Target Number based on Complexity\n\n        let bd_char1 = parseInt(html.find('[name=\"bd_char1\"]').val());\n        let ap_char1 = parseInt(html.find('[name=\"ap_char1\"]').val());\n        let bar_char1 = parseInt(html.find('[name=\"bar_char1\"]').val());\n\n        // NPC Roll\n        let skill_char2 = html.find('[name=\"skill_char2\"]').val();\n        let skillLevel_char2 = parseInt(html.find('[name=\"skillLevel_char2\"]').val());\n        let link_char2 = parseInt(html.find('[name=\"link_char2\"]').val());\n        let complexity_char2 = parseInt(html.find('[name=\"complexity_char2\"]').val());\n        let modifiers_char2 = parseInt(html.find('[name=\"modifiers_char2\"]').val());\n        let naturalAptitude_char2 = html.find('[name=\"naturalAptitude_char2\"]').is(':checked');\n        let rollFormula_char2 = naturalAptitude_char2 ? \"3d6kh2x12 + @skillLevel + @link + @modifiers\" : \"2d6x12 + @skillLevel + @link + @modifiers\";\n        let roll_char2 = new Roll(rollFormula_char2, {skillLevel: skillLevel_char2, link: link_char2, modifiers: modifiers_char2});\n        await roll_char2.toMessage();\n        \n        let result_char2 = roll_char2.total;\n        let margin_char2 = result_char2 - complexity_char2; // Target Number based on Complexity\n\n        let bd_char2 = parseInt(html.find('[name=\"bd_char2\"]').val());\n        let ap_char2 = parseInt(html.find('[name=\"ap_char2\"]').val());\n        let bar_char2 = parseInt(html.find('[name=\"bar_char2\"]').val());\n\n        // Calculate Final Damage\n        let damage_char1 = 0;\n        let damage_char2 = 0;\n        \n        if (margin_char1 > margin_char2) {\n          damage_char1 = Math.max(0, Math.ceil((bd_char1 + margin_char1 * 0.25) - (ap_char2 - bar_char2)));\n        } else if (margin_char2 > margin_char1) {\n          damage_char2 = Math.max(0, Math.ceil((bd_char2 + margin_char2 * 0.25) - (ap_char1 - bar_char1)));\n        }\n\n        // Determine Winner and Outcome\n        let outcome = (margin_char1 === margin_char2) ? \"It's a tie!\" : (margin_char1 > margin_char2) ? \"PC wins!\" : \"NPC wins!\";\n        \n        // Display Results with Damage\n        let content = `\n          <strong>PC:</strong><br>\n          Skill: ${skill_char1}<br>\n          Roll: ${result_char1}<br>\n          Margin: ${margin_char1}<br>\n          Damage: ${damage_char1}<br>\n          <br>\n          <strong>NPC:</strong><br>\n          Skill: ${skill_char2}<br>\n          Roll: ${result_char2}<br>\n          Margin: ${margin_char2}<br>\n          Damage: ${damage_char2}<br>\n          <br>\n          <strong>Outcome:</strong><br>\n          ${outcome}\n        `;\n\n        // Create Chat Message\n        ChatMessage.create({\n          speaker: ChatMessage.getSpeaker(),\n          content: content\n        });\n        if (damage_char1 > 0) await game.modules.get(\"mechwarrior-rpg-homebrew\")?.api?.applyAttackDamage?.({damage: damage_char1});\n        else if (damage_char2 > 0) await game.modules.get(\"mechwarrior-rpg-homebrew\")?.api?.applyAttackDamage?.({damage: damage_char2, winner: \"defender\"});\n      }\n    }\n  }\n}).render(true);",
+  "folder": null,
+  "sort": 300000,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721189364453,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!2pFTD0VbxbwyB9Bj",
+  "name": "Skill Check",
+  "type": "script",
+  "_id": "2pFTD0VbxbwyB9Bj",
+  "author": "aVx50qMPICyTFLDL",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Skill%20Check.png",
+  "scope": "global",
+  "command": "let skillsList = [\n  \"Acting\", \"Acrobatics\", \"Administration\", \"Animal Handling\", \"Appraisal\", \"Archery\", \"Art\",\n  \"Artillery\", \"Career\", \"Climbing\", \"Communications\", \"Computers\", \"Cryptography\", \"Demolitions\",\n  \"Disguise\", \"Driving\", \"Escape Artist\", \"Forgery\", \"Gunnery\", \"Interest\", \"Interrogation\",\n  \"Investigation\", \"Language\", \"Leadership\", \"Martial Arts\", \"Medical\",\n  \"Melee Weapons\", \"MedTech\", \"Navigation\", \"Negotiation\", \"Perception\", \"Piloting\",\n  \"Prestidigitation\", \"Protocol\", \"Running\", \"Science\", \"Security Systems\", \"Sensor Operations\",\n  \"Small Arms\", \"Stealth\", \"Strategy\", \"Streetwise\", \"Support Weapons\", \"Surgery\",\n  \"Survival\", \"Swimming\", \"Tactics\", \"Technician\", \"Thrown Weapons\", \"Tracking\",\n  \"Training\", \"Zero-G Operations\"\n];\n\nlet skillOptions = skillsList.map(skill => `<option value=\"${skill}\">${skill}</option>`).join('');\n\nlet dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>Skill:</label>\n      <select id=\"skill\" name=\"skill\">\n        ${skillOptions}\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Skill Level:</label>\n      <input type=\"number\" id=\"skillLevel\" name=\"skillLevel\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Link (Attribute Modifier):</label>\n      <input type=\"number\" id=\"link\" name=\"link\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Complexity:</label>\n      <select id=\"complexity\" name=\"complexity\">\n        <option value=\"7\">Simple-Basic (7)</option>\n        <option value=\"8\">Simple-Advanced (8)</option>\n        <option value=\"8\">Complex-Basic (8)</option>\n        <option value=\"9\">Complex-Advanced (9)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"additionalModifier\" name=\"additionalModifier\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude:</label>\n      <input type=\"checkbox\" id=\"naturalAptitude\" name=\"naturalAptitude\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"Skill Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let skill = html.find('[name=\"skill\"]').val();\n        let skillLevel = parseInt(html.find('[name=\"skillLevel\"]').val());\n        let link = parseInt(html.find('[name=\"link\"]').val());\n        let complexity = parseInt(html.find('[name=\"complexity\"]').val());\n        let additionalModifier = parseInt(html.find('[name=\"additionalModifier\"]').val());\n        let naturalAptitude = html.find('[name=\"naturalAptitude\"]').is(':checked');\n        \n        let rollFormula = naturalAptitude ? \"3d6kh2x12 + @skillLevel + @link + @additionalModifier\" : \"2d6x12 + @skillLevel + @link + @additionalModifier\";\n        let roll = new Roll(rollFormula, {skillLevel: skillLevel, link: link, additionalModifier: additionalModifier});\n        await roll.evaluate();\n        \n        let result = roll.total;\n        let margin = result - complexity; // Target Number based on Complexity\n        let description = \"\";\n\n        if (margin >= 7) description = \"Spectacular\";\n        else if (margin >= 5) description = \"Extraordinary\";\n        else if (margin >= 3) description = \"Good\";\n        else if (margin >= 1) description = \"It'll do...\";\n        else if (margin === 0) description = \"Barely made it!\";\n        else if (margin >= -2) description = \"Almost...\";\n        else if (margin >= -4) description = \"Bad\";\n        else if (margin >= -6) description = \"Terrible\";\n        else description = \"Disastrous\";\n\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `Skill Check (Complexity ${complexity})<br>Skill: ${skill}<br>Roll: ${result}<br>Margin: ${margin}<br>${description}`\n        });\n      }\n    }\n  }\n}).render(true);",
+  "folder": null,
+  "sort": 400000,
+  "ownership": {
+   "default": 0,
+   "aVx50qMPICyTFLDL": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1720152783568,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!BwMHpLJNMQWpbeTx",
+  "name": "EDG Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "icons/svg/dice-target.svg",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>EDG Value:</label>\n      <input type=\"number\" name=\"attributeValue\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" name=\"modifiers\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"EDG Attribute Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let attr = parseInt(html.find('[name=\"attributeValue\"]').val());\n        let mod = parseInt(html.find('[name=\"modifiers\"]').val());\n        let roll = new Roll(\"2d6 + @attr + @mod\", { attr, mod });\n        await roll.evaluate();\n        let margin = roll.total - 12;\n        let result = getMarginDescription(margin);\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `EDG Check<br>EDG: ${attr} + ${mod}<br>Roll: ${roll.total}<br>Margin: ${margin}<br>${result}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": "vaPVeRxUZbaOwJkk",
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.346",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1752362404413,
+   "modifiedTime": 1752362404426,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "_id": "BwMHpLJNMQWpbeTx",
+  "sort": 300000,
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  }
+ },
+ {
+  "_key": "!macros!c7vJUYnhZWKCnvyn",
+  "name": "Wealth/Equipped Trait Check",
+  "type": "script",
+  "_id": "c7vJUYnhZWKCnvyn",
+  "author": "aVx50qMPICyTFLDL",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Wealth%20Check.png",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>Trait:</label>\n      <select id=\"trait\" name=\"trait\">\n        <option value=\"Wealth\">Wealth</option>\n        <option value=\"Equipped\">Equipped</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Trait Value:</label>\n      <input type=\"number\" id=\"traitValue\" name=\"traitValue\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers\" name=\"modifiers\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"Wealth/Equipped Trait Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let trait = html.find('[name=\"trait\"]').val();\n        let traitValue = parseInt(html.find('[name=\"traitValue\"]').val());\n        let modifiers = parseInt(html.find('[name=\"modifiers\"]').val()) || 0;\n        \n        let rollFormula = \"2d6x12 + @attr + @mod\";\n        let roll = new Roll(rollFormula, { attr: traitValue, mod: modifiers });\n        await roll.evaluate();\n        \n        let result = roll.total;\n        let margin = result - 12; // Target Number 12\n        let description = getMarginDescription(margin);\n\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `Single Trait Check<br>Trait: ${trait}<br>Trait Value: ${traitValue}<br>Roll: ${result}<br>Margin: ${margin}<br>${description}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": null,
+  "sort": 1000000,
+  "ownership": {
+   "default": 0,
+   "aVx50qMPICyTFLDL": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1720165667007,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!cJvagGzwyEVc3gii",
+  "name": "BOD Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "icons/svg/dice-target.svg",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>BOD Value:</label>\n      <input type=\"number\" name=\"attributeValue\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" name=\"modifiers\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"BOD Attribute Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let attr = parseInt(html.find('[name=\"attributeValue\"]').val());\n        let mod = parseInt(html.find('[name=\"modifiers\"]').val());\n        let roll = new Roll(\"2d6 + @attr + @mod\", { attr, mod });\n        await roll.evaluate();\n        let margin = roll.total - 12;\n        let result = getMarginDescription(margin);\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `BOD Check<br>BOD: ${attr} + ${mod}<br>Roll: ${roll.total}<br>Margin: ${margin}<br>${result}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": "vaPVeRxUZbaOwJkk",
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.346",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1752362395894,
+   "modifiedTime": 1752362404426,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "_id": "cJvagGzwyEVc3gii",
+  "sort": 100000,
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  }
+ },
+ {
+  "_key": "!macros!cztQJHa3Ft2x0FAT",
+  "name": "Opposed Attribute Checks",
+  "type": "script",
+  "_id": "cztQJHa3Ft2x0FAT",
+  "author": "aVx50qMPICyTFLDL",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Opposed%20Attr%20Checks.png",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <h3>PC</h3>\n    <div class=\"form-group\">\n      <label>Attribute 1:</label>\n      <select id=\"attr1_char1\" name=\"attr1_char1\">\n        <option value=\"STR\">STR</option>\n        <option value=\"BOD\">BOD</option>\n        <option value=\"RFL\">RFL</option>\n        <option value=\"DEX\">DEX</option>\n        <option value=\"INT\">INT</option>\n        <option value=\"WIL\">WIL</option>\n        <option value=\"CHA\">CHA</option>\n        <option value=\"EDG\">EDG</option>\n      </select>\n      <input type=\"number\" id=\"attr1_value_char1\" name=\"attr1_value_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Attribute 2:</label>\n      <select id=\"attr2_char1\" name=\"attr2_char1\">\n        <option value=\"STR\">STR</option>\n        <option value=\"BOD\">BOD</option>\n        <option value=\"RFL\">RFL</option>\n        <option value=\"DEX\">DEX</option>\n        <option value=\"INT\">INT</option>\n        <option value=\"WIL\">WIL</option>\n        <option value=\"CHA\">CHA</option>\n        <option value=\"EDG\">EDG</option>\n      </select>\n      <input type=\"number\" id=\"attr2_value_char1\" name=\"attr2_value_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers_char1\" name=\"modifiers_char1\" value=\"0\"/>\n    </div>\n    <h3>NPC</h3>\n    <div class=\"form-group\">\n      <label>Attribute 1:</label>\n      <select id=\"attr1_char2\" name=\"attr1_char2\">\n        <option value=\"STR\">STR</option>\n        <option value=\"BOD\">BOD</option>\n        <option value=\"RFL\">RFL</option>\n        <option value=\"DEX\">DEX</option>\n        <option value=\"INT\">INT</option>\n        <option value=\"WIL\">WIL</option>\n        <option value=\"CHA\">CHA</option>\n        <option value=\"EDG\">EDG</option>\n      </select>\n      <input type=\"number\" id=\"attr1_value_char2\" name=\"attr1_value_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Attribute 2:</label>\n      <select id=\"attr2_char2\" name=\"attr2_char2\">\n        <option value=\"STR\">STR</option>\n        <option value=\"BOD\">BOD</option>\n        <option value=\"RFL\">RFL</option>\n        <option value=\"DEX\">DEX</option>\n        <option value=\"INT\">INT</option>\n        <option value=\"WIL\">WIL</option>\n        <option value=\"CHA\">CHA</option>\n        <option value=\"EDG\">EDG</option>\n      </select>\n      <input type=\"number\" id=\"attr2_value_char2\" name=\"attr2_value_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers_char2\" name=\"modifiers_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Use Dual Attributes:</label>\n      <input type=\"checkbox\" id=\"useDualAttributes\" name=\"useDualAttributes\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"Dual Attribute Opposed Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let useDualAttributes = html.find('[name=\"useDualAttributes\"]').is(':checked');\n\n        // PC Roll\n        let attr1_char1 = html.find('[name=\"attr1_char1\"]').val();\n        let attr1_value_char1 = parseInt(html.find('[name=\"attr1_value_char1\"]').val());\n        let attr2_value_char1 = 0;\n        let targetNumber_char1 = 12;\n        let modifiers_char1 = parseInt(html.find('[name=\"modifiers_char1\"]').val()) || 0;\n        if (useDualAttributes) {\n          attr2_value_char1 = parseInt(html.find('[name=\"attr2_value_char1\"]').val());\n          targetNumber_char1 = 18;\n        }\n\n        let rollFormula_char1 = useDualAttributes ? \"2d6x12 + @attr1 + @attr2 + @mod\" : \"2d6x12 + @attr1 + @mod\";\n        let roll_char1 = new Roll(rollFormula_char1, { attr1: attr1_value_char1, attr2: attr2_value_char1, mod: modifiers_char1 });\n        await roll_char1.evaluate();\n        roll_char1.toMessage();\n\n        // NPC Roll\n        let attr1_char2 = html.find('[name=\"attr1_char2\"]').val();\n        let attr1_value_char2 = parseInt(html.find('[name=\"attr1_value_char2\"]').val());\n        let attr2_value_char2 = 0;\n        let targetNumber_char2 = 12;\n        let modifiers_char2 = parseInt(html.find('[name=\"modifiers_char2\"]').val()) || 0;\n        if (useDualAttributes) {\n          attr2_value_char2 = parseInt(html.find('[name=\"attr2_value_char2\"]').val());\n          targetNumber_char2 = 18;\n        }\n\n        let rollFormula_char2 = useDualAttributes ? \"2d6x12 + @attr1 + @attr2 + @mod\" : \"2d6x12 + @attr1 + @mod\";\n        let roll_char2 = new Roll(rollFormula_char2, { attr1: attr1_value_char2, attr2: attr2_value_char2, mod: modifiers_char2 });\n        await roll_char2.evaluate();\n        roll_char2.toMessage();\n\n        // Calculate Results\n        let result_char1 = roll_char1.total;\n        let margin_char1 = result_char1 - targetNumber_char1; // Target Number based on Single or Dual Attributes\n        let description_char1 = getMarginDescription(margin_char1);\n\n        let result_char2 = roll_char2.total;\n        let margin_char2 = result_char2 - targetNumber_char2; // Target Number based on Single or Dual Attributes\n        let description_char2 = getMarginDescription(margin_char2);\n\n        // Compare Results\n        let outcome = (margin_char1 === margin_char2) ? \"It's a tie!\" : (margin_char1 > margin_char2) ? \"PC wins!\" : \"NPC wins!\";\n\n        // Display Results\n        ChatMessage.create({\n          speaker: ChatMessage.getSpeaker(),\n          content: `\n            <strong>PC:</strong><br>\n            Roll: ${result_char1}<br>\n            Margin: ${margin_char1}<br>\n            ${description_char1}<br>\n            <br>\n            <strong>NPC:</strong><br>\n            Roll: ${result_char2}<br>\n            Margin: ${margin_char2}<br>\n            ${description_char2}<br>\n            <br>\n            <strong>Outcome:</strong><br>\n            ${outcome}\n          `\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": null,
+  "sort": 1100000,
+  "ownership": {
+   "default": 0,
+   "aVx50qMPICyTFLDL": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1720152902869,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!FYoIfLh4De5ptjOt",
+  "name": "Attribute Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Attr%20Check.png",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>Attribute 1:</label>\n      <select id=\"attribute1\" name=\"attribute1\">\n        <option value=\"STR\">STR</option>\n        <option value=\"BOD\">BOD</option>\n        <option value=\"RFL\">RFL</option>\n        <option value=\"DEX\">DEX</option>\n        <option value=\"INT\">INT</option>\n        <option value=\"WIL\">WIL</option>\n        <option value=\"CHA\">CHA</option>\n        <option value=\"EDG\">EDG</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Attribute 1 Value:</label>\n      <input type=\"number\" id=\"attributeValue1\" name=\"attributeValue1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Attribute 2:</label>\n      <select id=\"attribute2\" name=\"attribute2\">\n        <option value=\"STR\">STR</option>\n        <option value=\"BOD\">BOD</option>\n        <option value=\"RFL\">RFL</option>\n        <option value=\"DEX\">DEX</option>\n        <option value=\"INT\">INT</option>\n        <option value=\"WIL\">WIL</option>\n        <option value=\"CHA\">CHA</option>\n        <option value=\"EDG\">EDG</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Attribute 2 Value:</label>\n      <input type=\"number\" id=\"attributeValue2\" name=\"attributeValue2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers\" name=\"modifiers\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Use Dual Attributes:</label>\n      <input type=\"checkbox\" id=\"useDualAttributes\" name=\"useDualAttributes\" checked/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"Attribute Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let useDualAttributes = html.find('[name=\"useDualAttributes\"]').is(':checked');\n        \n        let attribute1 = html.find('[name=\"attribute1\"]').val();\n        let attributeValue1 = parseInt(html.find('[name=\"attributeValue1\"]').val());\n        let attributeValue2 = 0;\n        let modifiers = parseInt(html.find('[name=\"modifiers\"]').val());\n        let targetNumber = 12;\n\n        if (useDualAttributes) {\n          attributeValue2 = parseInt(html.find('[name=\"attributeValue2\"]').val());\n          targetNumber = 18;\n        }\n\n        let rollFormula = useDualAttributes ? \"2d6 + @attr1 + @mod + @attr2\" : \"2d6 + @attr1 + @mod\";\n        let roll = new Roll(rollFormula, { attr1: attributeValue1, attr2: attributeValue2, mod: modifiers });\n        await roll.evaluate();\n\n        let result = roll.total;\n        let margin = result - targetNumber;\n        let description = getMarginDescription(margin);\n\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `Attribute Check<br>\n                    Attribute 1: ${attribute1} (${attributeValue1} + ${modifiers})<br>\n                    ${useDualAttributes ? `Attribute 2: ${html.find('[name=\"attribute2\"]').val()} (${attributeValue2} + ${modifiers})<br>` : ''}\n                    Roll: ${result}<br>\n                    Margin: ${margin}<br>\n                    ${description}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": null,
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.351",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1768707004128,
+   "modifiedTime": 1768707004128,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  },
+  "_id": "FYoIfLh4De5ptjOt",
+  "sort": 0
+ },
+ {
+  "_key": "!macros!Io12n3GN4J1uvgQV",
+  "name": "Hit Location Table",
+  "type": "script",
+  "_id": "Io12n3GN4J1uvgQV",
+  "author": "J4g1S80fPvLoq9Vy",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Hit%20Location.png",
+  "scope": "global",
+  "command": "// Prompt for the angle of attack\nlet angle = await new Promise(resolve => {\n    new Dialog({\n        title: \"Hit Location Table\",\n        content: `\n            <form>\n                <div class=\"form-group\">\n                    <label>Angle of Attack</label>\n                    <select id=\"attack-angle\">\n                        <option value=\"0\">Front/Back</option>\n                        <option value=\"-1\">Left Side</option>\n                        <option value=\"1\">Right Side</option>\n                        <option value=\"0\">Above</option>\n                        <option value=\"0\">Below</option>\n                    </select>\n                </div>\n            </form>\n        `,\n        buttons: {\n            ok: {\n                label: \"OK\",\n                callback: html => resolve(html.find(\"#attack-angle\").val())\n            }\n        }\n    }).render(true);\n});\n\n// Perform the 2d6 roll\nlet roll = await new Roll(\"2d6\").evaluate();\nawait roll.toMessage({flavor: \"Hit Location Roll\"});\nlet result = roll.total;\n\n// Adjust the result based on the angle of attack\nresult += parseInt(angle);\n\n// Reroll if necessary based on the angle of attack\nif (angle === \"0\") {\n    if (result === 7 && roll.formula === \"2d6\") {\n        // Reroll for Above (Legs)\n        roll = await new Roll(\"2d6\").evaluate();\n        await roll.toMessage({flavor: \"Rerolling for Above (Legs)\"});\n        result = roll.total;\n    } else if (result === 2 || result === 12) {\n        // Reroll for Below (Head)\n        roll = await new Roll(\"2d6\").evaluate();\n        await roll.toMessage({flavor: \"Rerolling for Below (Head)\"});\n        result = roll.total;\n    }\n}\n\n// Clamp the result to be between 2 and 12\nif (result < 2) result = 2;\nif (result > 12) result = 12;\n\n// Lookup the hit location in the rollable table\nlet hitLocationTable = (game.tables.getName(\"Hit Location Table\") ?? (await game.packs.get(\"mechwarrior-rpg-homebrew.atow-tables\")?.getDocuments({ name: \"Hit Location Table\" }))?.[0]);\nlet tableRoll = await hitLocationTable.draw({roll: new Roll(result.toString())});\nlet hitLocation = tableRoll.results[0].text;\n\n// Handle additional rolls for torso and legs\nlet subLocationRoll;\nif (hitLocation.includes(\"Torso\")) {\n    subLocationRoll = await new Roll(\"1d6\").evaluate();\n    await subLocationRoll.toMessage({flavor: \"Torso Sub-Location Roll\"});\n    hitLocation = subLocationRoll.total <= 4 ? \"Chest\" : \"Abdomen\";\n} else if (hitLocation.includes(\"Legs\")) {\n    subLocationRoll = await new Roll(\"1d6\").evaluate();\n    await subLocationRoll.toMessage({flavor: \"Legs Sub-Location Roll\"});\n    hitLocation = subLocationRoll.total <= 3 ? \"Left Leg\" : \"Right Leg\";\n}\n\n// Output the final hit location in chat\nChatMessage.create({\n    content: `\n        <b>Hit Location Roll:</b> ${roll.total} (${roll.formula}) <br>\n        ${angle !== \"0\" ? `<b>Adjusted for Angle of Attack:</b> ${angle} <br>` : \"\"}\n        ${subLocationRoll ? `<b>Sub-Location Roll:</b> ${subLocationRoll.total} (${subLocationRoll.formula}) <br>` : \"\"}\n        <b>Hit Location Result:</b> ${hitLocation} <br>\n    `\n});",
+  "folder": null,
+  "sort": 600000,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721957912939,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!jvSmI206CbLA9J8z",
+  "name": "Advanced Melee Combat Roll",
+  "type": "script",
+  "_id": "jvSmI206CbLA9J8z",
+  "author": "J4g1S80fPvLoq9Vy",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Adv%20Melee%20Combat.png",
+  "scope": "global",
+  "command": "// Function to roll 1d6\nasync function roll1d6() {\n    let roll = new Roll('1d6');\n    await roll.evaluate();\n    await roll.toMessage({flavor: \"1d6 Roll\", rollMode: \"roll\"});\n    return roll.total;\n}\n\n// ATOW hit location: 2d6 table, with Torso and Legs split by 1d6\nasync function rollMeleeHitLocation() {\n    const table = {2: \"head\", 3: \"leftFoot\", 4: \"leftHand\", 5: \"leftArm\", 6: \"torso\", 7: \"legs\",\n                   8: \"torso\", 9: \"rightArm\", 10: \"rightHand\", 11: \"rightFoot\", 12: \"head\"};\n    const roll = new Roll(\"2d6\");\n    await roll.evaluate();\n    await roll.toMessage({flavor: \"Hit Location Roll (2d6)\", rollMode: \"roll\"});\n    let location = table[roll.total];\n    if (location === \"torso\") location = (await roll1d6()) <= 4 ? \"chest\" : \"abdomen\";\n    else if (location === \"legs\") location = (await roll1d6()) <= 3 ? \"leftLeg\" : \"rightLeg\";\n    return location;\n}\n\n// Function to create chat message\nfunction createChatMessage(content) {\n    ChatMessage.create({\n        content: content,\n        whisper: ChatMessage.getWhisperRecipients(\"GM\")\n    });\n}\n\n// Wound Effects\nconst woundEffects = {\n    dazed: {name: \"Dazed\", description: \"Character suffers 1D6 additional Fatigue damage points.\", damageType: \"Fatigue\"},\n    deafened: {name: \"Deafened\", description: \"Character suffers critical damage to ear equal to Level 3 Poor Hearing.\"},\n    blinded: {name: \"Blinded\", description: \"Character suffers critical damage to eye equal to Level 3 Poor Vision.\"},\n    internalDamage: {name: \"Internal Damage\", description: \"Character suffers 1D6 additional Standard damage points. Note: Check for Bleeding.\", damageType: \"Standard\"},\n    knockdown: {name: \"Knockdown\", description: \"Character must make a RFL Attribute Check to avoid falling, applying Injury modifiers.\"},\n    shatteredLimb: {name: \"Shattered Limb\", description: \"Character cannot use the affected limb. Note: Check for Bleeding.\"}\n};\n\n// Hit Locations with Damage Multipliers and effects\nconst hitLocations = {\n    head: {name: \"Head\", multiplier: 2, effects: async () => {\n        let roll = await roll1d6();\n        if (roll <= 4) return woundEffects.dazed;\n        if (roll === 5) return woundEffects.deafened;\n        if (roll === 6) return woundEffects.blinded;\n    }},\n    chest: {name: \"Chest\", multiplier: 1, effects: async () => {\n        let roll = await roll1d6();\n        if (roll <= 3) return null;\n        if (roll === 4) return woundEffects.dazed;\n        if (roll === 5) return woundEffects.knockdown;\n        if (roll === 6) return woundEffects.internalDamage;\n    }},\n    abdomen: {name: \"Abdomen\", multiplier: 1, effects: async () => {\n        let roll = await roll1d6();\n        if (roll <= 2) return null;\n        if (roll <= 4) return woundEffects.dazed;\n        if (roll === 5) return woundEffects.knockdown;\n        if (roll === 6) return woundEffects.internalDamage;\n    }},\n    leftArm: {name: \"Left Arm\", multiplier: 0.5, effects: () => {\n        return {name: \"Arm Injury\", description: \"All actions using affected arm suffer –1 roll modifier (max –2)†\"};\n    }},\n    rightArm: {name: \"Right Arm\", multiplier: 0.5, effects: () => {\n        return {name: \"Arm Injury\", description: \"All actions using affected arm suffer –1 roll modifier (max –2)†\"};\n    }},\n    leftLeg: {name: \"Left Leg\", multiplier: 0.75, effects: () => {\n        return {name: \"Knockdown\", description: \"Character must make a RFL Attribute Check to avoid falling, applying Injury modifiers. Reduce all movement by 2 meters/turn (to a min. of 0 meters/turn)\"};\n    }},\n    rightLeg: {name: \"Right Leg\", multiplier: 0.75, effects: () => {\n        return {name: \"Knockdown\", description: \"Character must make a RFL Attribute Check to avoid falling, applying Injury modifiers. Reduce all movement by 2 meters/turn (to a min. of 0 meters/turn)\"};\n    }},\n    leftHand: {name: \"Left Hand\", multiplier: 0.25, effects: () => {\n        return {name: \"Hand Injury\", description: \"All actions using affected hand suffer –2 roll modifier (max –4)†\"};\n    }},\n    rightHand: {name: \"Right Hand\", multiplier: 0.25, effects: () => {\n        return {name: \"Hand Injury\", description: \"All actions using affected hand suffer –2 roll modifier (max –4)†\"};\n    }},\n    leftFoot: {name: \"Left Foot\", multiplier: 0.25, effects: () => {\n        return {name: \"Knockdown\", description: \"Character must make a RFL Attribute Check to avoid falling, applying Injury modifiers. Reduce all movement by 1 meter/turn (to a min. of 0 meters/turn)\"};\n    }},\n    rightFoot: {name: \"Right Foot\", multiplier: 0.25, effects: () => {\n        return {name: \"Knockdown\", description: \"Character must make a RFL Attribute Check to avoid falling, applying Injury modifiers. Reduce all movement by 1 meter/turn (to a min. of 0 meters/turn)\"};\n    }}\n};\n\n// Function to apply damage and effects\nasync function applyDamageAndEffects(hitLocation, damage, winner = \"attacker\") {\n    let extra = {Standard: 0, Fatigue: 0};\n    let location = hitLocations[hitLocation];\n    let totalDamage = Math.ceil(damage * location.multiplier);\n    let effect = await location.effects();\n    createChatMessage(`<b>Hit Location:</b> ${location.name}`);\n    createChatMessage(`<b>Damage:</b> ${totalDamage}`);\n    if (effect) {\n        createChatMessage(`<b>Wound Effect:</b> ${effect.name} - ${effect.description}`);\n        if (effect.name === \"Dazed\" || effect.name === \"Internal Damage\") {\n            let additionalDamage = await roll1d6();\n            createChatMessage(`<b>Additional ${effect.damageType} Damage:</b> ${additionalDamage}`);\n            extra[effect.damageType] += additionalDamage;\n        }\n    }\n    await game.modules.get(\"mechwarrior-rpg-homebrew\")?.api?.applyAttackDamage?.({damage: totalDamage, winner, extraStandard: extra.Standard, extraFatigue: extra.Fatigue});\n}\n\n// Function to handle the Melee Combat Roll\nasync function meleeCombatRoll(skill, skillLevel, link, complexity, modifiers, naturalAptitude) {\n    let rollFormula = naturalAptitude ? \"3d6kh2x12 + @skillLevel + @link + @modifiers\" : \"2d6x12 + @skillLevel + @link + @modifiers\";\n    let roll = new Roll(rollFormula, {skillLevel, link, modifiers});\n    await roll.evaluate();\n    await roll.toMessage({flavor: `${skill} Roll`, rollMode: \"roll\"});\n    return roll.total - complexity;\n}\n\n// Combine the two scripts\nlet skillsList = [\"Martial Arts\", \"Melee Weapons\"];\nlet skillOptions = skillsList.map(skill => `<option value=\"${skill}\">${skill}</option>`).join('');\n\nlet dialogContent = `\n  <form>\n    <h3>PC</h3>\n    <div class=\"form-group\">\n      <label>Skill:</label>\n      <select id=\"skill_char1\" name=\"skill_char1\">\n        ${skillOptions}\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Skill Level:</label>\n      <input type=\"number\" id=\"skillLevel_char1\" name=\"skillLevel_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Link (Attribute Modifier):</label>\n      <input type=\"number\" id=\"link_char1\" name=\"link_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Complexity:</label>\n      <select id=\"complexity_char1\" name=\"complexity_char1\">\n        <option value=\"8\">Simple-Advanced (8)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers_char1\" name=\"modifiers_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude:</label>\n      <input type=\"checkbox\" id=\"naturalAptitude_char1\" name=\"naturalAptitude_char1\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Base Damage (BD):</label>\n      <input type=\"number\" id=\"bd_char1\" name=\"bd_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Armor Piercing (AP):</label>\n      <input type=\"number\" id=\"ap_char1\" name=\"ap_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Target's Barrier Armor Rating (BAR):</label>\n      <input type=\"number\" id=\"bar_char1\" name=\"bar_char1\" value=\"0\"/>\n    </div>\n    <h3>NPC</h3>\n    <div class=\"form-group\">\n      <label>Skill:</label>\n      <select id=\"skill_char2\" name=\"skill_char2\">\n        ${skillOptions}\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Skill Level:</label>\n      <input type=\"number\" id=\"skillLevel_char2\" name=\"skillLevel_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Link (Attribute Modifier):</label>\n      <input type=\"number\" id=\"link_char2\" name=\"link_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Complexity:</label>\n      <select id=\"complexity_char2\" name=\"complexity_char2\">\n        <option value=\"8\">Simple-Advanced (8)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers_char2\" name=\"modifiers_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude:</label>\n      <input type=\"checkbox\" id=\"naturalAptitude_char2\" name=\"naturalAptitude_char2\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Base Damage (BD):</label>\n      <input type=\"number\" id=\"bd_char2\" name=\"bd_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Armor Piercing (AP):</label>\n      <input type=\"number\" id=\"ap_char2\" name=\"ap_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Target's Barrier Armor Rating (BAR):</label>\n      <input type=\"number\" id=\"bar_char2\" name=\"bar_char2\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n    title: \"Melee Combat Roll\",\n    content: dialogContent,\n    buttons: {\n        roll: {\n            label: \"Roll\",\n            callback: async (html) => {\n                let skill_char1 = html.find(\"[name=skill_char1]\").val();\n                let skillLevel_char1 = parseInt(html.find(\"[name=skillLevel_char1]\").val());\n                let link_char1 = parseInt(html.find(\"[name=link_char1]\").val());\n                let complexity_char1 = parseInt(html.find(\"[name=complexity_char1]\").val());\n                let modifiers_char1 = parseInt(html.find(\"[name=modifiers_char1]\").val());\n                let naturalAptitude_char1 = html.find(\"[name=naturalAptitude_char1]\")[0].checked;\n                let bd_char1 = parseInt(html.find(\"[name=bd_char1]\").val());\n                let ap_char1 = parseInt(html.find(\"[name=ap_char1]\").val());\n                let bar_char1 = parseInt(html.find(\"[name=bar_char1]\").val());\n\n                let skill_char2 = html.find(\"[name=skill_char2]\").val();\n                let skillLevel_char2 = parseInt(html.find(\"[name=skillLevel_char2]\").val());\n                let link_char2 = parseInt(html.find(\"[name=link_char2]\").val());\n                let complexity_char2 = parseInt(html.find(\"[name=complexity_char2]\").val());\n                let modifiers_char2 = parseInt(html.find(\"[name=modifiers_char2]\").val());\n                let naturalAptitude_char2 = html.find(\"[name=naturalAptitude_char2]\")[0].checked;\n                let bd_char2 = parseInt(html.find(\"[name=bd_char2]\").val());\n                let ap_char2 = parseInt(html.find(\"[name=ap_char2]\").val());\n                let bar_char2 = parseInt(html.find(\"[name=bar_char2]\").val());\n\n                let char1RollResult = await meleeCombatRoll(skill_char1, skillLevel_char1, link_char1, complexity_char1, modifiers_char1, naturalAptitude_char1);\n                let char2RollResult = await meleeCombatRoll(skill_char2, skillLevel_char2, link_char2, complexity_char2, modifiers_char2, naturalAptitude_char2);\n\n                let marginOfSuccess_char1 = char1RollResult - char2RollResult;\n\n                if (marginOfSuccess_char1 > 0) {\n                    createChatMessage(`<b>Winner:</b> PC`);\n                    let damage = Math.max(bd_char1 - (bar_char1 - ap_char1), 0);\n                    let hitLocation = await rollMeleeHitLocation();\n                    await applyDamageAndEffects(hitLocation, damage, \"attacker\");\n                } else {\n                    createChatMessage(`<b>Winner:</b> NPC`);\n                    let damage = Math.max(bd_char2 - (bar_char2 - ap_char2), 0);\n                    let hitLocation = await rollMeleeHitLocation();\n                    await applyDamageAndEffects(hitLocation, damage, \"defender\");\n                }\n            }\n        }\n    }\n}).render(true);",
+  "folder": null,
+  "sort": 1200000,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1722153857079,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!kc4pta6eq8PTf3Ye",
+  "name": "Advanced Ranged Combat Roll",
+  "type": "script",
+  "_id": "kc4pta6eq8PTf3Ye",
+  "author": "J4g1S80fPvLoq9Vy",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Adv%20Rng%20Combat.png",
+  "scope": "global",
+  "command": "let skillsList = [\n  \"Archery\", \"Artillery\", \"Gunnery\", \"Small Arms\", \"Support Weapons\", \"Thrown Weapons\"\n];\n\nlet skillComplexities = {\n  \"Archery\": 7,\n  \"Artillery\": 8,\n  \"Gunnery\": 8,\n  \"Small Arms\": 7,\n  \"Support Weapons\": 7,\n  \"Thrown Weapons\": 7\n};\n\nlet skillOptions = skillsList.map(skill => `<option value=\"${skill}\" data-complexity=\"${skillComplexities[skill]}\">${skill}</option>`).join('');\n\nlet dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>Skill:</label>\n      <select id=\"skill\" name=\"skill\">\n        ${skillOptions}\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Skill Level:</label>\n      <input type=\"number\" id=\"skillLevel\" name=\"skillLevel\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Link (Attribute Modifier):</label>\n      <input type=\"number\" id=\"link\" name=\"link\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Complexity:</label>\n      <select id=\"complexity\" name=\"complexity\">\n        <option value=\"7\">Simple-Basic (7)</option>\n        <option value=\"8\">Simple-Advanced (8)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Range:</label>\n      <select id=\"range\" name=\"range\">\n        <option value=\"1\">Point Blank (+1)</option>\n        <option value=\"0\">Short (0)</option>\n        <option value=\"-2\">Medium (-2)</option>\n        <option value=\"-4\">Long (-4)</option>\n        <option value=\"-6\">Extreme (-6)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"additionalModifier\" name=\"additionalModifier\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude:</label>\n      <input type=\"checkbox\" id=\"naturalAptitude\" name=\"naturalAptitude\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Base Damage (BD):</label>\n      <input type=\"number\" id=\"baseDamage\" name=\"baseDamage\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Armor Piercing (AP):</label>\n      <input type=\"number\" id=\"armorPiercing\" name=\"armorPiercing\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Target's Barrier Armor Rating (BAR):</label>\n      <input type=\"number\" id=\"barrierArmorRating\" name=\"barrierArmorRating\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Burst-Fire:</label>\n      <input type=\"checkbox\" id=\"burstFire\" name=\"burstFire\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"Ranged Combat\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let skill = html.find('[name=\"skill\"]').val();\n        let skillLevel = parseInt(html.find('[name=\"skillLevel\"]').val());\n        let link = parseInt(html.find('[name=\"link\"]').val());\n        let complexity = parseInt(html.find(`[name=\"skill\"] option:selected`).data(\"complexity\"));\n        let additionalModifier = parseInt(html.find('[name=\"additionalModifier\"]').val());\n        let rangeModifier = parseInt(html.find('[name=\"range\"]').val()) || 0;\n        let naturalAptitude = html.find('[name=\"naturalAptitude\"]').is(':checked');\n        let baseDamage = parseInt(html.find('[name=\"baseDamage\"]').val());\n        let armorPiercing = parseInt(html.find('[name=\"armorPiercing\"]').val());\n        let barrierArmorRating = parseInt(html.find('[name=\"barrierArmorRating\"]').val());\n        let burstFire = html.find('[name=\"burstFire\"]').is(':checked');\n\n        let rollFormula = naturalAptitude ? \"3d6kh2 + @skillLevel + @link + @additionalModifier + @rangeModifier\" : \"2d6 + @skillLevel + @link + @additionalModifier + @rangeModifier\";\n        let roll = new Roll(rollFormula, {skillLevel: skillLevel, link: link, additionalModifier: additionalModifier, rangeModifier: rangeModifier});\n        await roll.evaluate();\n        await roll.toMessage({flavor: \"Ranged Attack Roll\", rollMode: \"roll\"});\n\n        let result = roll.total;\n        let margin = result - complexity;\n\n        let hitOrMiss = margin >= 0 ? \"Hit\" : \"Miss\";\n        let finalDamage = 0;\n\n        if (margin >= 0) {\n          if (burstFire) {\n            finalDamage = baseDamage + Math.floor(margin) - Math.max(armorPiercing - barrierArmorRating, 0);\n          } else {\n            finalDamage = baseDamage + Math.floor(margin * 0.25) - Math.max(armorPiercing - barrierArmorRating, 0);\n          }\n          if (finalDamage < 0) {\n            finalDamage = 0;\n          }\n        }\n\n        ChatMessage.create({\n          content: `\n            <b>Skill Check (Complexity ${complexity})</b><br>\n            Skill: ${skill}<br>\n            Roll: ${result}<br>\n            Margin: ${margin}<br>\n            ${hitOrMiss}<br>\n            Base Damage: ${baseDamage}<br>\n            Final Damage: ${finalDamage}\n          `\n        });\n\n        // If the attack is a hit, proceed to determine hit location and apply wound effects\n        if (hitOrMiss === \"Hit\") {\n          // Prompt for the angle of attack\n          let angle = await new Promise(resolve => {\n            new Dialog({\n              title: \"Hit Location Table\",\n              content: `\n                <form>\n                  <div class=\"form-group\">\n                    <label>Angle of Attack</label>\n                    <select id=\"attack-angle\">\n                      <option value=\"0\">Front/Back</option>\n                      <option value=\"-1\">Left Side</option>\n                      <option value=\"1\">Right Side</option>\n                      <option value=\"0\">Above</option>\n                      <option value=\"0\">Below</option>\n                    </select>\n                  </div>\n                </form>\n              `,\n              buttons: {\n                ok: {\n                  label: \"OK\",\n                  callback: html => resolve(html.find(\"#attack-angle\").val())\n                }\n              }\n            }).render(true);\n          });\n\n          // Perform the 2d6 roll for hit location\n          let hitLocationRoll = await new Roll(\"2d6\").evaluate();\n          await hitLocationRoll.toMessage({flavor: \"Hit Location Roll\", rollMode: \"roll\"});\n          let hitLocationResult = hitLocationRoll.total;\n\n          // Adjust the result based on the angle of attack\n          hitLocationResult += parseInt(angle);\n\n          // Reroll if necessary based on the angle of attack\n          if (angle === \"0\") {\n            if (hitLocationResult === 7 && hitLocationRoll.formula === \"2d6\") {\n              // Reroll for Above (Legs)\n              hitLocationRoll = await new Roll(\"2d6\").evaluate();\n              await hitLocationRoll.toMessage({flavor: \"Rerolling for Above (Legs)\", rollMode: \"roll\"});\n              hitLocationResult = hitLocationRoll.total;\n            } else if (hitLocationResult === 2 || hitLocationResult === 12) {\n              // Reroll for Below (Head)\n              hitLocationRoll = await new Roll(\"2d6\").evaluate();\n              await hitLocationRoll.toMessage({flavor: \"Rerolling for Below (Head)\", rollMode: \"roll\"});\n              hitLocationResult = hitLocationRoll.total;\n            }\n          }\n\n          // Clamp the result to be between 2 and 12\n          if (hitLocationResult < 2) hitLocationResult = 2;\n          if (hitLocationResult > 12) hitLocationResult = 12;\n\n          // Lookup the hit location in the rollable table\n          let hitLocationTable = (game.tables.getName(\"Hit Location Table\") ?? (await game.packs.get(\"mechwarrior-rpg-homebrew.atow-tables\")?.getDocuments({ name: \"Hit Location Table\" }))?.[0]);\n          let tableRoll = await hitLocationTable.draw({roll: new Roll(hitLocationResult.toString())});\n          let hitLocation = tableRoll.results[0].text;\n\n          // Handle additional rolls for torso and legs\n          let subLocationRoll;\n          if (hitLocation.includes(\"Torso\")) {\n            subLocationRoll = await new Roll(\"1d6\").evaluate();\n            await subLocationRoll.toMessage({flavor: \"Torso Sub-Location Roll\", rollMode: \"roll\"});\n            hitLocation = subLocationRoll.total <= 4 ? \"Chest\" : \"Abdomen\";\n          } else if (hitLocation.includes(\"Legs\")) {\n            subLocationRoll = await new Roll(\"1d6\").evaluate();\n            await subLocationRoll.toMessage({flavor: \"Legs Sub-Location Roll\", rollMode: \"roll\"});\n            hitLocation = subLocationRoll.total <= 3 ? \"Left Leg\" : \"Right Leg\";\n          }\n\n          // Output the final hit location in chat\n          ChatMessage.create({\n            content: `\n              <b>Hit Location Roll:</b> ${hitLocationRoll.total} (${hitLocationRoll.formula}) <br>\n              <b>Hit Location Result:</b> ${hitLocation} <br>\n              ${subLocationRoll ? `<b>Sub-Location Roll:</b> ${subLocationRoll.total} (${subLocationRoll.formula}) <br>` : \"\"}\n            `\n          });\n\n          // Apply damage multipliers and wound effects based on hit location\n          let damageMultiplier = 1;\n          let woundEffects = \"\";\n\n          switch (hitLocation.toLowerCase().replace(' ', '')) {\n            case \"head\":\n              damageMultiplier = 2;\n              let headRoll = new Roll(\"1d6\");\n              await headRoll.evaluate();\n              await headRoll.toMessage({flavor: \"Head Wound Effect Roll\", rollMode: \"roll\"});\n              switch (headRoll.total) {\n                case 1:\n                case 2:\n                case 3:\n                case 4:\n                  woundEffects = \"Dazed: Character suffers 1D6 additional Fatigue damage points.\";\n                  let dazedRoll = new Roll(\"1d6\");\n                  await dazedRoll.evaluate();\n                  await dazedRoll.toMessage({flavor: \"Dazed Effect Roll\", rollMode: \"roll\"});\n                  woundEffects += ` Fatigue Damage: ${dazedRoll.total}`;\n                  break;\n                case 5:\n                  woundEffects = \"Deafened: Character suffers critical damage to ear equal to Level 3 Poor Hearing.\";\n                  break;\n                case 6:\n                  woundEffects = \"Blinded: Character suffers critical damage to eye equal to Level 3 Poor Vision.\";\n                  break;\n              }\n              break;\n            case \"chest\":\n              let chestRoll = new Roll(\"1d6\");\n              await chestRoll.evaluate();\n              await chestRoll.toMessage({flavor: \"Chest Wound Effect Roll\", rollMode: \"roll\"});\n              switch (chestRoll.total) {\n                case 4:\n                  woundEffects = \"Dazed: Character suffers 1D6 additional Fatigue damage points.\";\n                  let dazedRoll = new Roll(\"1d6\");\n                  await dazedRoll.evaluate();\n                  await dazedRoll.toMessage({flavor: \"Dazed Effect Roll\", rollMode: \"roll\"});\n                  woundEffects += ` Fatigue Damage: ${dazedRoll.total}`;\n                  break;\n                case 5:\n                  woundEffects = \"Knockdown: Character must make a RFL Attribute Check to avoid falling, applying Injury modifiers.\";\n                  break;\n                case 6:\n                  woundEffects = \"Internal Damage: Character suffers 1D6 additional Standard damage points. Note: Check for Bleeding.\";\n                  let internalRoll = new Roll(\"1d6\");\n                  await internalRoll.evaluate();\n                  await internalRoll.toMessage({flavor: \"Internal Damage Effect Roll\", rollMode: \"roll\"});\n                  woundEffects += ` Standard Damage: ${internalRoll.total}`;\n                  break;\n              }\n              break;\n            case \"abdomen\":\n              let abdomenRoll = new Roll(\"1d6\");\n              await abdomenRoll.evaluate();\n              await abdomenRoll.toMessage({flavor: \"Abdomen Wound Effect Roll\", rollMode: \"roll\"});\n              switch (abdomenRoll.total) {\n                case 3:\n                case 4:\n                  woundEffects = \"Dazed: Character suffers 1D6 additional Fatigue damage points.\";\n                  let dazedRoll = new Roll(\"1d6\");\n                  await dazedRoll.evaluate();\n                  await dazedRoll.toMessage({flavor: \"Dazed Effect Roll\", rollMode: \"roll\"});\n                  woundEffects += ` Fatigue Damage: ${dazedRoll.total}`;\n                  break;\n                case 5:\n                  woundEffects = \"Knockdown: Character must make a RFL Attribute Check to avoid falling, applying Injury modifiers.\";\n                  break;\n                case 6:\n                  woundEffects = \"Internal Damage: Character suffers 1D6 additional Standard damage points. Note: Check for Bleeding.\";\n                  let internalRoll = new Roll(\"1d6\");\n                  await internalRoll.evaluate();\n                  await internalRoll.toMessage({flavor: \"Internal Damage Effect Roll\", rollMode: \"roll\"});\n                  woundEffects += ` Standard Damage: ${internalRoll.total}`;\n                  break;\n              }\n              break;\n            case \"leftarm\":\n            case \"rightarm\":\n              damageMultiplier = 0.5;\n              woundEffects = \"All actions using affected arm suffer –1 roll modifier (max –2).\";\n              break;\n            case \"leftleg\":\n            case \"rightleg\":\n              damageMultiplier = 0.75;\n              woundEffects = \"Knockdown: Character must make a RFL Attribute Check to avoid falling, applying Injury modifiers. Reduce all movement by 2 meters/turn (to a min. of 0 meters/turn).\";\n              break;\n            case \"lefthand\":\n            case \"righthand\":\n              damageMultiplier = 0.25;\n              woundEffects = \"All actions using affected hand suffer –2 roll modifier (max –4).\";\n              break;\n            case \"leftfoot\":\n            case \"rightfoot\":\n              damageMultiplier = 0.25;\n              woundEffects = \"Knockdown: Character must make a RFL Attribute Check to avoid falling, applying Injury modifiers. Reduce all movement by 1 meter/turn (to a min. of 0 meters/turn).\";\n              break;\n          }\n\n          finalDamage *= damageMultiplier;\n          finalDamage = Math.ceil(finalDamage);\n\n          ChatMessage.create({\n            content: `\n              <b>Final Damage after Multiplier:</b> ${finalDamage}<br>\n              <b>Wound Effects:</b> ${woundEffects}\n            `\n          });\n          await game.modules.get(\"mechwarrior-rpg-homebrew\")?.api?.applyAttackDamage?.({damage: finalDamage, effects: woundEffects});\n        }\n      }\n    }\n  },\n  render: (html) => {\n    html.find('[name=\"skill\"]').change(function() {\n      let selectedSkill = $(this).val();\n      let complexity = skillComplexities[selectedSkill];\n      html.find('[name=\"complexity\"]').val(complexity);\n    }).change();\n  }\n}).render(true);",
+  "folder": null,
+  "sort": 1300000,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1722153928738,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!RB3Vr6fC0wYNvDHl",
+  "name": "Edge Save Table",
+  "type": "script",
+  "_id": "RB3Vr6fC0wYNvDHl",
+  "author": "aVx50qMPICyTFLDL",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Edge%20Save.png",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>Attribute:</label>\n      <select id=\"attribute\" name=\"attribute\">\n        <option value=\"EDG\">EDG</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Attribute Value:</label>\n      <input type=\"number\" id=\"attributeValue\" name=\"attributeValue\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"EDG Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let attribute = html.find('[name=\"attribute\"]').val();\n        let attributeValue = parseInt(html.find('[name=\"attributeValue\"]').val());\n        let roll = new Roll(\"2d6x12 + @attr\", {attr: attributeValue});\n        await roll.evaluate();\n        \n        let result = roll.total;\n        let margin = result - 12; // Target Number 12\n        let description = \"\";\n\n        if (margin >= 7) description = \"WHAT Danger? (The original outcome is negated.)\";\n        else if (margin >= 5) description = \"Just a Scratch! (Offset and halve negative effects)\";\n        else if (margin >= 3) description = \"Destiny Blinks (Offset negative effects randomly)\";\n        else if (margin >= 1) description = \"Glancing Blow (Halve any negative effects)\";\n        else if (margin === 0) description = \"Near Failure! (Reduce effects just enough to survive)\";\n        else if (margin >= -1) description = \"Failure! (No change to original outcome)\";\n        else description = \"Devastating Failure! (Double all negative effects)\";\n\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `Single Attribute Check<br>Attribute: ${attribute}<br>Attribute Value: ${attributeValue}<br>Roll: ${result}<br>Margin: ${margin}<br>${description}`\n        });\n      }\n    }\n  }\n}).render(true);",
+  "folder": null,
+  "sort": 700000,
+  "ownership": {
+   "default": 0,
+   "aVx50qMPICyTFLDL": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1720166188035,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!RryBPfe5LNiWFVvz",
+  "name": "STR Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "icons/svg/dice-target.svg",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>STR Value:</label>\n      <input type=\"number\" name=\"attributeValue\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" name=\"modifiers\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"STR Attribute Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let attr = parseInt(html.find('[name=\"attributeValue\"]').val());\n        let mod = parseInt(html.find('[name=\"modifiers\"]').val());\n        let roll = new Roll(\"2d6 + @attr + @mod\", { attr, mod });\n        await roll.evaluate();\n        let margin = roll.total - 12;\n        let result = getMarginDescription(margin);\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `STR Check<br>STR: ${attr} + ${mod}<br>Roll: ${roll.total}<br>Margin: ${margin}<br>${result}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": "vaPVeRxUZbaOwJkk",
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.346",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1752362412761,
+   "modifiedTime": 1752362412761,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "_id": "RryBPfe5LNiWFVvz",
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  }
+ },
+ {
+  "_key": "!macros!spAIsYVtCsT52irc",
+  "name": "Bundled Skill Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Skill%20Check.png",
+  "scope": "global",
+  "command": "let skillsList = [\n  \"Acting\", \"Acrobatics\", \"Administration\", \"Animal Handling\", \"Appraisal\", \"Archery\", \"Art\",\n  \"Artillery\", \"Career\", \"Climbing\", \"Communications\", \"Computers\", \"Cryptography\", \"Demolitions\",\n  \"Disguise\", \"Driving\", \"Escape Artist\", \"Forgery\", \"Gunnery\", \"Interest\", \"Interrogation\",\n  \"Investigation\", \"Language\", \"Leadership\", \"Martial Arts\", \"Medical\",\n  \"Melee Weapons\", \"MedTech\", \"Navigation\", \"Negotiation\", \"Perception\", \"Piloting\",\n  \"Prestidigitation\", \"Protocol\", \"Running\", \"Science\", \"Security Systems\", \"Sensor Operations\",\n  \"Small Arms\", \"Stealth\", \"Strategy\", \"Streetwise\", \"Support Weapons\", \"Surgery\",\n  \"Survival\", \"Swimming\", \"Tactics\", \"Technician\", \"Thrown Weapons\", \"Tracking\",\n  \"Training\", \"Zero-G Operations\"\n].sort();\n\nlet skillOptions = `<option value=\"\">-- None --</option>` + skillsList.map(skill => `<option value=\"${skill}\">${skill}</option>`).join('');\n\n// Generate 9 skill slots\nlet skillRows = \"\";\nfor (let i = 1; i <= 9; i++) {\n  skillRows += `\n    <div class=\"form-group\">\n      <label>Skill ${i}:</label>\n      <select name=\"skill-${i}\">${skillOptions}</select>\n      <input type=\"number\" name=\"level-${i}\" placeholder=\"Lvl\" style=\"width: 50px; margin-left: 5px;\" value=\"0\"/>\n    </div>`;\n}\n\nlet dialogContent = `\n  <form>\n    <p style=\"font-size: 0.9em; color: #666;\">Select 3 to 9 skills for the bundle.</p>\n    ${skillRows}\n    <hr>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"additionalModifier\" name=\"additionalModifier\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude (+1):</label>\n      <input type=\"checkbox\" id=\"naturalAptitude\" name=\"naturalAptitude\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>All Clan Field Aptitude (TN 7):</label>\n      <input type=\"checkbox\" id=\"clanAptitude\" name=\"clanAptitude\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"Bundled Skill Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      icon: '<i class=\"fas fa-dice\"></i>',\n      label: \"Roll Bundle\",\n      callback: async (html) => {\n        let selectedSkills = [];\n        let totalLevel = 0;\n\n        // Collect and Validate Skills\n        for (let i = 1; i <= 9; i++) {\n          let name = html.find(`[name=\"skill-${i}\"]`).val();\n          let lvl = parseInt(html.find(`[name=\"level-${i}\"]`).val()) || 0;\n          if (name) {\n            selectedSkills.push(name);\n            totalLevel += lvl;\n          }\n        }\n\n        if (selectedSkills.length < 3) {\n          ui.notifications.warn(\"A Bundled Skill Check requires at least 3 skills.\");\n          return;\n        }\n\n        // Logic variables\n        let avgLevel = Math.ceil(totalLevel / selectedSkills.length);\n        let additionalMod = parseInt(html.find('[name=\"additionalModifier\"]').val()) || 0;\n        let naturalAptitude = html.find('[name=\"naturalAptitude\"]').is(':checked') ? 1 : 0;\n        let tn = html.find('[name=\"clanAptitude\"]').is(':checked') ? 7 : 8;\n\n        // Roll: 2d6 Exploding + Avg Level + Modifiers + Aptitude\n        let rollFormula = `2d6x12 + ${avgLevel} + ${additionalMod} + ${naturalAptitude}`;\n        let roll = new Roll(rollFormula);\n        await roll.evaluate();\n\n        let result = roll.total;\n        let margin = result - tn;\n        let isFumble = roll.dice[0].results.every(r => r.result === 1); // Check for snake eyes\n\n        // Determine Description\n        let description = \"\";\n        if (margin >= 7) description = \"Spectacular\";\n        else if (margin >= 5) description = \"Extraordinary\";\n        else if (margin >= 3) description = \"Good\";\n        else if (margin >= 1) description = \"It'll do...\";\n        else if (margin === 0) description = \"Barely made it!\";\n        else if (margin >= -2) description = \"Almost...\";\n        else if (margin >= -4) description = \"Bad\";\n        else if (margin >= -6) description = \"Terrible\";\n        else description = \"Disastrous\";\n\n        // Handle Failure Logic\n        let failureText = \"\";\n        if (margin < 0) {\n          let moF = Math.abs(margin);\n          let actionsFailed = Math.ceil(moF / 2);\n          \n          if (isFumble || actionsFailed >= selectedSkills.length) {\n            failureText = `<br><strong style=\"color:red;\">FUMBLED: Entire sequence failed from the start.</strong>`;\n          } else {\n            // Find which skill it failed at (counting back from end)\n            let failIndex = selectedSkills.length - actionsFailed;\n            let failedSkillName = selectedSkills[failIndex];\n            failureText = `<br><strong style=\"color:orange;\">Failed at ${failedSkillName}</strong> (Step ${failIndex + 1})`;\n          }\n        }\n\n        let content = `\n          <div style=\"font-family: sans-serif;\">\n            <b>Bundled Skill Check (TN ${tn})</b><br>\n            <i>Skills: ${selectedSkills.join(\", \")}</i><hr>\n            <b>Avg Skill Level:</b> ${avgLevel}<br>\n            <b>Roll Total:</b> ${result}<br>\n            <b>Margin:</b> ${margin}<br>\n            <b>Result:</b> ${description}\n            ${failureText}\n          </div>\n        `;\n\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: content\n        });\n      }\n    }\n  },\n  default: \"roll\"\n}).render(true);",
+  "folder": null,
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  },
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.351",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1768705623510,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "_id": "spAIsYVtCsT52irc",
+  "sort": 200000
+ },
+ {
+  "_key": "!macros!SvQXpqJ4atrnd6RU",
+  "name": "RFL Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "icons/svg/dice-target.svg",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>RFL Value:</label>\n      <input type=\"number\" name=\"attributeValue\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" name=\"modifiers\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"RFL Attribute Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let attr = parseInt(html.find('[name=\"attributeValue\"]').val());\n        let mod = parseInt(html.find('[name=\"modifiers\"]').val());\n        let roll = new Roll(\"2d6 + @attr + @mod\", { attr, mod });\n        await roll.evaluate();\n        let margin = roll.total - 12;\n        let result = getMarginDescription(margin);\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `RFL Check<br>RFL: ${attr} + ${mod}<br>Roll: ${roll.total}<br>Margin: ${margin}<br>${result}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": "vaPVeRxUZbaOwJkk",
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.346",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1752362409905,
+   "modifiedTime": 1752362409905,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "_id": "SvQXpqJ4atrnd6RU",
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  }
+ },
+ {
+  "_key": "!macros!ufLn7S7Rx14zrrl6",
+  "name": "DEX Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "icons/svg/dice-target.svg",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>DEX Value:</label>\n      <input type=\"number\" name=\"attributeValue\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" name=\"modifiers\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"DEX Attribute Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let attr = parseInt(html.find('[name=\"attributeValue\"]').val());\n        let mod = parseInt(html.find('[name=\"modifiers\"]').val());\n        let roll = new Roll(\"2d6 + @attr + @mod\", { attr, mod });\n        await roll.evaluate();\n        let margin = roll.total - 12;\n        let result = getMarginDescription(margin);\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `DEX Check<br>DEX: ${attr} + ${mod}<br>Roll: ${roll.total}<br>Margin: ${margin}<br>${result}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": "vaPVeRxUZbaOwJkk",
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.346",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1752362401878,
+   "modifiedTime": 1752362404426,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "_id": "ufLn7S7Rx14zrrl6",
+  "sort": 400000,
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  }
+ },
+ {
+  "_key": "!macros!UpbfgDQuMZXMyxT7",
+  "name": "Opposed Skill Checks",
+  "type": "script",
+  "_id": "UpbfgDQuMZXMyxT7",
+  "author": "aVx50qMPICyTFLDL",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Opposed%20Skill%20Checks.png",
+  "scope": "global",
+  "command": "let skillsList = [\n  \"Acting\", \"Acrobatics\", \"Administration\", \"Animal Handling\", \"Appraisal\", \"Archery\", \"Art\",\n  \"Artillery\", \"Career\", \"Climbing\", \"Communications\", \"Computers\", \"Cryptography\", \"Demolitions\",\n  \"Disguise\", \"Driving\", \"Escape Artist\", \"Forgery\", \"Gunnery\", \"Interest\", \"Interrogation\",\n  \"Investigation\", \"Language\", \"Leadership\", \"Martial Arts\", \"Medical\",\n  \"Melee Weapons\", \"MedTech\", \"Navigation\", \"Negotiation\", \"Perception\", \"Piloting\",\n  \"Prestidigitation\", \"Protocol\", \"Running\", \"Science\", \"Security Systems\", \"Sensor Operations\",\n  \"Small Arms\", \"Stealth\", \"Strategy\", \"Streetwise\", \"Support Weapons\", \"Surgery\",\n  \"Survival\", \"Swimming\", \"Tactics\", \"Technician\", \"Thrown Weapons\", \"Tracking\",\n  \"Training\", \"Zero-G Operations\"\n];\n\nlet skillOptions = skillsList.map(skill => `<option value=\"${skill}\">${skill}</option>`).join('');\n\nlet dialogContent = `\n  <form>\n    <h3>PC</h3>\n    <div class=\"form-group\">\n      <label>Skill:</label>\n      <select id=\"skill_char1\" name=\"skill_char1\">\n        ${skillOptions}\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Skill Level:</label>\n      <input type=\"number\" id=\"skillLevel_char1\" name=\"skillLevel_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Link (Attribute Modifier):</label>\n      <input type=\"number\" id=\"link_char1\" name=\"link_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Complexity:</label>\n      <select id=\"complexity_char1\" name=\"complexity_char1\">\n        <option value=\"7\">Simple-Basic (7)</option>\n        <option value=\"8\">Simple-Advanced (8)</option>\n        <option value=\"8\">Complex-Basic (8)</option>\n        <option value=\"9\">Complex-Advanced (9)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers_char1\" name=\"modifiers_char1\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude:</label>\n      <input type=\"checkbox\" id=\"naturalAptitude_char1\" name=\"naturalAptitude_char1\"/>\n    </div>\n    <h3>NPC</h3>\n    <div class=\"form-group\">\n      <label>Skill:</label>\n      <select id=\"skill_char2\" name=\"skill_char2\">\n        ${skillOptions}\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Skill Level:</label>\n      <input type=\"number\" id=\"skillLevel_char2\" name=\"skillLevel_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Link (Attribute Modifier):</label>\n      <input type=\"number\" id=\"link_char2\" name=\"link_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Complexity:</label>\n      <select id=\"complexity_char2\" name=\"complexity_char2\">\n        <option value=\"7\">Simple-Basic (7)</option>\n        <option value=\"8\">Simple-Advanced (8)</option>\n        <option value=\"8\">Complex-Basic (8)</option>\n        <option value=\"9\">Complex-Advanced (9)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"modifiers_char2\" name=\"modifiers_char2\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude:</label>\n      <input type=\"checkbox\" id=\"naturalAptitude_char2\" name=\"naturalAptitude_char2\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"Skill Opposed Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        // PC Roll\n        let skill_char1 = html.find('[name=\"skill_char1\"]').val();\n        let skillLevel_char1 = parseInt(html.find('[name=\"skillLevel_char1\"]').val());\n        let link_char1 = parseInt(html.find('[name=\"link_char1\"]').val());\n        let complexity_char1 = parseInt(html.find('[name=\"complexity_char1\"]').val());\n        let modifiers_char1 = parseInt(html.find('[name=\"modifiers_char1\"]').val());\n        let naturalAptitude_char1 = html.find('[name=\"naturalAptitude_char1\"]').is(':checked');\n        let rollFormula_char1 = naturalAptitude_char1 ? \"3d6kh2x12 + @skillLevel + @link + @modifiers\" : \"2d6x12 + @skillLevel + @link + @modifiers\";\n        let roll_char1 = new Roll(rollFormula_char1, {skillLevel: skillLevel_char1, link: link_char1, modifiers: modifiers_char1});\n        await roll_char1.toMessage();\n        \n        let result_char1 = roll_char1.total;\n        let margin_char1 = result_char1 - complexity_char1; // Target Number based on Complexity\n        let description_char1 = \"\";\n\n        if (margin_char1 >= 7) description_char1 = \"Spectacular\";\n        else if (margin_char1 >= 5) description_char1 = \"Extraordinary\";\n        else if (margin_char1 >= 3) description_char1 = \"Good\";\n        else if (margin_char1 >= 1) description_char1 = \"It'll do...\";\n        else if (margin_char1 === 0) description_char1 = \"Barely made it!\";\n        else if (margin_char1 >= -2) description_char1 = \"Almost...\";\n        else if (margin_char1 >= -4) description_char1 = \"Bad\";\n        else if (margin_char1 >= -6) description_char1 = \"Terrible\";\n        else description_char1 = \"Disastrous\";\n\n        // NPC Roll\n        let skill_char2 = html.find('[name=\"skill_char2\"]').val();\n        let skillLevel_char2 = parseInt(html.find('[name=\"skillLevel_char2\"]').val());\n        let link_char2 = parseInt(html.find('[name=\"link_char2\"]').val());\n        let complexity_char2 = parseInt(html.find('[name=\"complexity_char2\"]').val());\n        let modifiers_char2 = parseInt(html.find('[name=\"modifiers_char2\"]').val());\n        let naturalAptitude_char2 = html.find('[name=\"naturalAptitude_char2\"]').is(':checked');\n        let rollFormula_char2 = naturalAptitude_char2 ? \"3d6kh2x12 + @skillLevel + @link + @modifiers\" : \"2d6x12 + @skillLevel + @link + @modifiers\";\n        let roll_char2 = new Roll(rollFormula_char2, {skillLevel: skillLevel_char2, link: link_char2, modifiers: modifiers_char2});\n        await roll_char2.toMessage();\n        \n        let result_char2 = roll_char2.total;\n        let margin_char2 = result_char2 - complexity_char2; // Target Number based on Complexity\n        let description_char2 = \"\";\n\n        if (margin_char2 >= 7) description_char2 = \"Spectacular\";\n        else if (margin_char2 >= 5) description_char2 = \"Extraordinary\";\n        else if (margin_char2 >= 3) description_char2 = \"Good\";\n        else if (margin_char2 >= 1) description_char2 = \"It'll do...\";\n        else if (margin_char2 === 0) description_char2 = \"Barely made it!\";\n        else if (margin_char2 >= -2) description_char2 = \"Almost...\";\n        else if (margin_char2 >= -4) description_char2 = \"Bad\";\n        else if (margin_char2 >= -6) description_char2 = \"Terrible\";\n        else description_char2 = \"Disastrous\";\n\n        // Compare Results\n        let outcome = (margin_char1 === margin_char2) ? \"It's a tie!\" : (margin_char1 > margin_char2) ? \"PC wins!\" : \"NPC wins!\";\n\n        // Display Results\n        ChatMessage.create({\n          speaker: ChatMessage.getSpeaker(),\n          content: `\n            <strong>PC:</strong><br>\n            Skill: ${skill_char1}<br>\n            Roll: ${result_char1}<br>\n            Margin: ${margin_char1}<br>\n            ${description_char1}<br>\n            <br>\n            <strong>NPC:</strong><br>\n            Skill: ${skill_char2}<br>\n            Roll: ${result_char2}<br>\n            Margin: ${margin_char2}<br>\n            ${description_char2}<br>\n            <br>\n            <strong>Outcome:</strong><br>\n            ${outcome}\n          `\n        });\n      }\n    }\n  }\n}).render(true);",
+  "folder": null,
+  "sort": 800000,
+  "ownership": {
+   "default": 0,
+   "aVx50qMPICyTFLDL": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1720153003748,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!XAfrm6FfKfwKKsDT",
+  "name": "Basic Ranged Attack Roll",
+  "type": "script",
+  "_id": "XAfrm6FfKfwKKsDT",
+  "author": "J4g1S80fPvLoq9Vy",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Basic%20Rng%20Combat.png",
+  "scope": "global",
+  "command": "let skillsList = [\n  \"Archery\", \"Artillery\", \"Gunnery\", \"Small Arms\", \"Support Weapons\", \"Thrown Weapons\"\n];\n\nlet skillComplexities = {\n  \"Archery\": 7,\n  \"Artillery\": 8,\n  \"Gunnery\": 8,\n  \"Small Arms\": 7,\n  \"Support Weapons\": 7,\n  \"Thrown Weapons\": 7\n};\n\nlet skillOptions = skillsList.map(skill => `<option value=\"${skill}\" data-complexity=\"${skillComplexities[skill]}\">${skill}</option>`).join('');\n\nlet dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>Skill:</label>\n      <select id=\"skill\" name=\"skill\">\n        ${skillOptions}\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Skill Level:</label>\n      <input type=\"number\" id=\"skillLevel\" name=\"skillLevel\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Link (Attribute Modifier):</label>\n      <input type=\"number\" id=\"link\" name=\"link\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Complexity:</label>\n      <select id=\"complexity\" name=\"complexity\">\n        <option value=\"7\">Simple-Basic (7)</option>\n        <option value=\"8\">Simple-Advanced (8)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Range:</label>\n      <select id=\"range\" name=\"range\">\n        <option value=\"1\">Point Blank (+1)</option>\n        <option value=\"0\">Short (0)</option>\n        <option value=\"-2\">Medium (-2)</option>\n        <option value=\"-4\">Long (-4)</option>\n        <option value=\"-6\">Extreme (-6)</option>\n      </select>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" id=\"additionalModifier\" name=\"additionalModifier\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Natural Aptitude:</label>\n      <input type=\"checkbox\" id=\"naturalAptitude\" name=\"naturalAptitude\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Base Damage (BD):</label>\n      <input type=\"number\" id=\"baseDamage\" name=\"baseDamage\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Armor Piercing (AP):</label>\n      <input type=\"number\" id=\"armorPiercing\" name=\"armorPiercing\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Target's Barrier Armor Rating (BAR):</label>\n      <input type=\"number\" id=\"barrierArmorRating\" name=\"barrierArmorRating\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Burst-Fire:</label>\n      <input type=\"checkbox\" id=\"burstFire\" name=\"burstFire\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"Ranged Combat\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let skill = html.find('[name=\"skill\"]').val();\n        let skillLevel = parseInt(html.find('[name=\"skillLevel\"]').val());\n        let link = parseInt(html.find('[name=\"link\"]').val());\n        let complexity = parseInt(html.find(`[name=\"skill\"] option:selected`).data(\"complexity\"));\n        let additionalModifier = parseInt(html.find('[name=\"additionalModifier\"]').val());\n        let rangeModifier = parseInt(html.find('[name=\"range\"]').val()) || 0;\n        let naturalAptitude = html.find('[name=\"naturalAptitude\"]').is(':checked');\n        let baseDamage = parseInt(html.find('[name=\"baseDamage\"]').val());\n        let armorPiercing = parseInt(html.find('[name=\"armorPiercing\"]').val());\n        let barrierArmorRating = parseInt(html.find('[name=\"barrierArmorRating\"]').val());\n        let burstFire = html.find('[name=\"burstFire\"]').is(':checked');\n        \n        let rollFormula = naturalAptitude ? \"3d6kh2x12 + @skillLevel + @link + @additionalModifier + @rangeModifier\" : \"2d6x12 + @skillLevel + @link + @additionalModifier + @rangeModifier\";\n        let roll = new Roll(rollFormula, {skillLevel: skillLevel, link: link, additionalModifier: additionalModifier, rangeModifier: rangeModifier});\n        await roll.evaluate();\n        \n        let result = roll.total;\n        let margin = result - complexity; // Target Number based on Complexity\n        \n        // Calculate final damage\n        let finalDamage = 0;\n        if (margin >= 0) {\n          if (burstFire) {\n            finalDamage = baseDamage + Math.floor(margin) - Math.max(armorPiercing - barrierArmorRating, 0);\n          } else {\n            finalDamage = baseDamage + Math.floor(margin * 0.25) - Math.max(armorPiercing - barrierArmorRating, 0);\n          }\n          if (finalDamage < 0) {\n            finalDamage = 0;\n          }\n        }\n        \n        // Determine hit or miss based on margin\n        let hitOrMiss = margin >= 0 ? \"Hit\" : \"Miss\";\n\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `Skill Check (Complexity ${complexity})<br>Skill: ${skill}<br>Roll: ${result}<br>Margin: ${margin}<br>${hitOrMiss}<br>Final Damage: ${finalDamage}`\n        });\n        if (finalDamage > 0) await game.modules.get(\"mechwarrior-rpg-homebrew\")?.api?.applyAttackDamage?.({damage: finalDamage});\n      }\n    }\n  },\n  render: (html) => {\n    html.find('[name=\"skill\"]').change(function() {\n      let selectedSkill = $(this).val();\n      let complexity = skillComplexities[selectedSkill];\n      html.find('[name=\"complexity\"]').val(complexity);\n    }).change();\n  }\n}).render(true);",
+  "folder": null,
+  "sort": 900000,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  },
+  "flags": {},
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721189302674,
+   "modifiedTime": 1768705623535,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  }
+ },
+ {
+  "_key": "!macros!zjgpiP8mBcXrb8C4",
+  "name": "INT Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "icons/svg/dice-target.svg",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>INT Value:</label>\n      <input type=\"number\" name=\"attributeValue\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" name=\"modifiers\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"INT Attribute Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let attr = parseInt(html.find('[name=\"attributeValue\"]').val());\n        let mod = parseInt(html.find('[name=\"modifiers\"]').val());\n        let roll = new Roll(\"2d6 + @attr + @mod\", { attr, mod });\n        await roll.evaluate();\n        let margin = roll.total - 12;\n        let result = getMarginDescription(margin);\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `INT Check<br>INT: ${attr} + ${mod}<br>Roll: ${roll.total}<br>Margin: ${margin}<br>${result}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": "vaPVeRxUZbaOwJkk",
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.346",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1752362407361,
+   "modifiedTime": 1752362407361,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "_id": "zjgpiP8mBcXrb8C4",
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  }
+ },
+ {
+  "_key": "!macros!ZxDLnubpdajNNQfn",
+  "name": "CHA Check",
+  "type": "script",
+  "author": "sDLZp7RiGTOHZy6P",
+  "img": "icons/svg/dice-target.svg",
+  "scope": "global",
+  "command": "let dialogContent = `\n  <form>\n    <div class=\"form-group\">\n      <label>CHA Value:</label>\n      <input type=\"number\" name=\"attributeValue\" value=\"0\"/>\n    </div>\n    <div class=\"form-group\">\n      <label>Additional Modifiers:</label>\n      <input type=\"number\" name=\"modifiers\" value=\"0\"/>\n    </div>\n  </form>\n`;\n\nnew Dialog({\n  title: \"CHA Attribute Check\",\n  content: dialogContent,\n  buttons: {\n    roll: {\n      label: \"Roll\",\n      callback: async (html) => {\n        let attr = parseInt(html.find('[name=\"attributeValue\"]').val());\n        let mod = parseInt(html.find('[name=\"modifiers\"]').val());\n        let roll = new Roll(\"2d6 + @attr + @mod\", { attr, mod });\n        await roll.evaluate();\n        let margin = roll.total - 12;\n        let result = getMarginDescription(margin);\n        roll.toMessage({\n          speaker: ChatMessage.getSpeaker(),\n          content: `CHA Check<br>CHA: ${attr} + ${mod}<br>Roll: ${roll.total}<br>Margin: ${margin}<br>${result}`\n        });\n      }\n    }\n  }\n}).render(true);\n\nfunction getMarginDescription(margin) {\n  if (margin >= 7) return \"Spectacular\";\n  else if (margin >= 5) return \"Extraordinary\";\n  else if (margin >= 3) return \"Good\";\n  else if (margin >= 1) return \"It'll do...\";\n  else if (margin === 0) return \"Barely made it!\";\n  else if (margin >= -2) return \"Almost...\";\n  else if (margin >= -4) return \"Bad\";\n  else if (margin >= -6) return \"Terrible\";\n  else return \"Disastrous\";\n}",
+  "folder": "vaPVeRxUZbaOwJkk",
+  "flags": {},
+  "_stats": {
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null,
+   "coreVersion": "13.346",
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "createdTime": 1752362399189,
+   "modifiedTime": 1752362404426,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P"
+  },
+  "_id": "ZxDLnubpdajNNQfn",
+  "sort": 200000,
+  "ownership": {
+   "default": 0,
+   "sDLZp7RiGTOHZy6P": 3
+  }
+ }
+]

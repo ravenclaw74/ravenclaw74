@@ -1,0 +1,331 @@
+[
+ {
+  "_key": "!tables!QClUMcyFSWktjgn5",
+  "name": "Hit Location Table",
+  "img": "modules/mechwarrior-rpg-homebrew/icons/Hit%20Location.png",
+  "description": "",
+  "results": [
+   "0LWu9wF9lVqDVVqY",
+   "mb13FblwJGCFaf2d",
+   "gJCDeYTyUHiEG77L",
+   "PS6WcntoQ8HjqdYE",
+   "7vh2gfI93taM9lwK",
+   "0RbsZ3zPPxnvIpla",
+   "9jZ76SJSVuHGpe69",
+   "gEsSYAThYHjvB844",
+   "dzwGPi9OXQd8x3AO",
+   "Y5bIZeh3pcAztlkY",
+   "xpBWoDzPKzAoXla5"
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "flags": {
+   "core": {}
+  },
+  "_stats": {
+   "systemId": "worldbuilding",
+   "systemVersion": "0.8.2",
+   "coreVersion": "13.351",
+   "createdTime": 1721955940653,
+   "modifiedTime": 1767045070676,
+   "lastModifiedBy": "sDLZp7RiGTOHZy6P",
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "formula": "2d6",
+  "_id": "QClUMcyFSWktjgn5",
+  "sort": 0,
+  "ownership": {
+   "default": 0,
+   "J4g1S80fPvLoq9Vy": 3
+  }
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.0LWu9wF9lVqDVVqY",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   2,
+   2
+  ],
+  "drawn": false,
+  "_id": "0LWu9wF9lVqDVVqY",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Head",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.0RbsZ3zPPxnvIpla",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   7,
+   7
+  ],
+  "drawn": false,
+  "_id": "0RbsZ3zPPxnvIpla",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Legs",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.7vh2gfI93taM9lwK",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   6,
+   6
+  ],
+  "drawn": false,
+  "_id": "7vh2gfI93taM9lwK",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Torso",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.9jZ76SJSVuHGpe69",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   8,
+   8
+  ],
+  "drawn": false,
+  "_id": "9jZ76SJSVuHGpe69",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Torso",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.dzwGPi9OXQd8x3AO",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   10,
+   10
+  ],
+  "drawn": false,
+  "_id": "dzwGPi9OXQd8x3AO",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Hand",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.gEsSYAThYHjvB844",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   9,
+   9
+  ],
+  "drawn": false,
+  "_id": "gEsSYAThYHjvB844",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Arm",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.gJCDeYTyUHiEG77L",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   4,
+   4
+  ],
+  "drawn": false,
+  "_id": "gJCDeYTyUHiEG77L",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Hand",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.mb13FblwJGCFaf2d",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   3,
+   3
+  ],
+  "drawn": false,
+  "_id": "mb13FblwJGCFaf2d",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Foot",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.PS6WcntoQ8HjqdYE",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   5,
+   5
+  ],
+  "drawn": false,
+  "_id": "PS6WcntoQ8HjqdYE",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Left Arm",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.xpBWoDzPKzAoXla5",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   12,
+   12
+  ],
+  "drawn": false,
+  "_id": "xpBWoDzPKzAoXla5",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Head",
+  "name": ""
+ },
+ {
+  "_key": "!tables.results!QClUMcyFSWktjgn5.Y5bIZeh3pcAztlkY",
+  "type": "text",
+  "weight": 1,
+  "range": [
+   11,
+   11
+  ],
+  "drawn": false,
+  "_id": "Y5bIZeh3pcAztlkY",
+  "flags": {},
+  "img": "icons/svg/d20-black.svg",
+  "_stats": {
+   "coreVersion": "13.346",
+   "systemId": null,
+   "systemVersion": null,
+   "createdTime": null,
+   "modifiedTime": null,
+   "lastModifiedBy": null,
+   "compendiumSource": null,
+   "duplicateSource": null,
+   "exportSource": null
+  },
+  "description": "Right Foot",
+  "name": ""
+ }
+]

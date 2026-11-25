@@ -1,0 +1,13 @@
+# Foundry compendium packs are LevelDB databases: never let git rewrite line endings.
+packs/** binary
+*.ldb binary
+*.png binary
+*.jpg binary
+# Text sources keep LF everywhere
+*.js text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.hbs text eol=lf
+*.css text eol=lf
+*.md text eol=lf

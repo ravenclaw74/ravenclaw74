@@ -1,0 +1,26 @@
+<h3>Movement (Meters per Turn)
+    {{#if editable}}<a class="atow-mini" data-action="auto-movement" data-tooltip="Calculate from STR, RFL and Running/Climbing/Swimming skills">
+        <i class="fas fa-calculator"></i> Auto</a>{{/if}}
+</h3>
+<table class="atow-table atow-movement">
+    <tbody>
+        <tr>
+            <td><strong>Walk</strong></td><td contenteditable="true" name="system.movement.walk">{{system.movement.walk}}</td>
+            <td><strong>Climb</strong></td><td contenteditable="true" name="system.movement.climb">{{system.movement.climb}}</td>
+        </tr>
+        <tr>
+            <td><strong>Run/Evade</strong></td><td contenteditable="true" name="system.movement.run">{{system.movement.run}}</td>
+            <td><strong>Crawl</strong></td><td contenteditable="true" name="system.movement.crawl">{{system.movement.crawl}}</td>
+        </tr>
+        <tr>
+            <td><strong>Sprint</strong></td><td contenteditable="true" name="system.movement.sprint">{{system.movement.sprint}}</td>
+            <td><strong>Swim</strong></td><td contenteditable="true" name="system.movement.swim">{{system.movement.swim}}</td>
+        </tr>
+        {{#if showJump}}
+        <tr>
+            <td><strong>Jump</strong></td><td contenteditable="true" name="system.movement.jump">{{system.movement.jump}}</td>
+            <td></td><td></td>
+        </tr>
+        {{/if}}
+    </tbody>
+</table>

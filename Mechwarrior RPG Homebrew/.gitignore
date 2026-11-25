@@ -1,0 +1,5 @@
+# LevelDB runtime files Foundry rewrites on every launch
+packs/**/LOCK
+packs/**/LOG
+packs/**/LOG.old
+node_modules/
