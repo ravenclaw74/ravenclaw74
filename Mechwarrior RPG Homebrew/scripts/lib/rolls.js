@@ -17,11 +17,70 @@ function buildFormula(dice, parts) {
 
 const RANGE_LABELS = { pointBlank: "Point Blank", short: "Short", medium: "Medium", long: "Long", extreme: "Extreme" };
 
-/** Sum of the natural (kept) dice, for fumble / automatic-success detection. */
+/** Sum of the natural (kept) dice, for Fumble / Stunning Success detection. */
 function naturalTotal(roll) {
   const die = roll.dice[0];
   if (!die) return null;
   return die.results.filter(r => r.active !== false && !r.discarded).reduce((a, r) => a + r.result, 0);
+}
+
+/** Highest total an Action Check's unmodified dice can reach through Stunning Success re-rolls. */
+const MAX_UNMODIFIED = 30;
+
+/**
+ * Evaluate an ATOW Action Check roll and apply the Fumble / Stunning Success rules.
+ *  - Natural (unmodified) 2: Fumble, an automatic failure whatever the modifiers.
+ *  - Natural 12: Stunning Success. Roll 1d6 more and add it; while a 6 comes up roll again,
+ *    up to an unmodified total of 30. The total plus modifiers is then compared to the TN as normal.
+ *  - Unmodified 30: Miraculous Feat, an automatic success.
+ * Used by the sheet rolls and (through the module API) by the compendium roll macros, so the
+ * rule lives in one place.
+ * @param {Roll} roll  a Roll whose first dice term is the check's 2d6 (or 3d6kh2); evaluated here if needed
+ */
+export async function evaluateActionRoll(roll) {
+  if (roll.total == null) await roll.evaluate();
+  const natural = naturalTotal(roll) ?? 0;
+  const extra = [];
+  let unmodified = natural;
+  if (natural === 12) {
+    while (unmodified < MAX_UNMODIFIED) {
+      const die = await new Roll("1d6").evaluate();
+      extra.push(die.total);
+      unmodified += die.total;
+      if (die.total < 6) break;
+    }
+  }
+  const fumble = natural === 2;
+  const miraculous = unmodified >= MAX_UNMODIFIED;
+  const bonus = unmodified - natural;
+  const dice = extra.join(", ");
+  const text = fumble ? "Fumble! Natural 2: automatic failure (−1 roll modifier to actions in the next 5–10 seconds)."
+    : miraculous ? `Miraculous Feat! Stunning Success reached 30 (extra dice: ${dice}): automatic success.`
+    : extra.length ? `Stunning Success! Natural 12, extra dice: ${dice} (+${bonus}).` : "";
+  return {
+    roll, natural, extra, bonus, fumble, miraculous,
+    /** Roll total including Stunning Success dice. */
+    total: roll.total + bonus,
+    /** Margin of Success against a target number, after the Fumble / Miraculous Feat overrides. */
+    margin(tn) {
+      let m = this.total - tn;
+      if (fumble) m = Math.min(m, -1);
+      if (miraculous) m = Math.max(m, 0);
+      return m;
+    },
+    /** Chat text for sheet cards. */
+    noteBlock: text ? `<div class="atow-note">${text}</div>` : "",
+    /** Chat text for the compendium macros, which build their messages with <br>. */
+    note: text ? `<br><b>${text.replace(/^([^!]+!)/, "$1</b>")}` : ""
+  };
+}
+
+/**
+ * Action Check dice for the compendium roll macros: 2d6 (or 3d6 keep highest 2 with Natural Aptitude)
+ * plus `modifiers`, e.g. rollActionCheck("@skillLevel + @link + @mod", {skillLevel, link, mod}).
+ */
+export function rollActionCheck(modifiers, data = {}, naturalAptitude = false) {
+  return evaluateActionRoll(new Roll(`${naturalAptitude ? "3d6kh2" : "2d6"} + ${modifiers}`, data));
 }
 
 function card({ title, subtitle = "", rows = [], result, tn, margin, extra = "" }) {
@@ -90,21 +149,18 @@ export async function rollAttribute(actor, key, { prompt = false, second = null 
   const a = attributeScore(actor, key);
   const b = second ? attributeScore(actor, second) : 0;
   const tn = second ? RULES.doubleAttributeTN : RULES.singleAttributeTN;
-  const roll = await new Roll(buildFormula("2d6", [a, b, mod])).evaluate();
-  const nat = naturalTotal(roll);
-  let margin = roll.total - tn;
+  const check = await evaluateActionRoll(new Roll(buildFormula("2d6", [a, b, mod])));
+  const roll = check.roll;
+  const margin = check.margin(tn);
   const rows = [[ATTRIBUTE_LABELS[key], a]];
   if (second) rows.push([ATTRIBUTE_LABELS[second], b]);
   if (mod) rows.push(["Modifiers", formatMod(mod)]);
-  const fumble = nat === 2, crit = nat === 12;
-  if (fumble) margin = Math.min(margin, -1);
-  if (crit) margin = Math.max(margin, 0);
   const label = second ? `${ATTRIBUTE_LABELS[key]} + ${ATTRIBUTE_LABELS[second]}` : ATTRIBUTE_LABELS[key];
   return roll.toMessage({
     speaker: ChatMessage.getSpeaker({ actor }),
     flavor: card({
-      title: `${label} Attribute Check`, rows, result: roll.total, tn, margin,
-      extra: fumble ? `<div class="atow-note">Natural 2 — automatic failure (fumble).</div>` : crit ? `<div class="atow-note">Natural 12 — automatic success.</div>` : ""
+      title: `${label} Attribute Check`, rows, result: check.total, tn, margin,
+      extra: check.noteBlock
     })
   });
 }
@@ -151,12 +207,9 @@ export async function rollSkill(actor, row, { prompt = false, extraRows = [], ex
   const trained = s.level !== null;
   const level = trained ? s.level : -4;
   const na = hasNaturalAptitude(actor, s.name);
-  const roll = await new Roll(buildFormula(na ? "3d6kh2" : "2d6", [level, s.linkTotal, mod])).evaluate();
-  const nat = naturalTotal(roll);
-  let margin = roll.total - s.tn;
-  const fumble = nat === 2, crit = nat === 12;
-  if (fumble) margin = Math.min(margin, -1);
-  if (crit) margin = Math.max(margin, 0);
+  const check = await evaluateActionRoll(new Roll(buildFormula(na ? "3d6kh2" : "2d6", [level, s.linkTotal, mod])));
+  const roll = check.roll;
+  const margin = check.margin(s.tn);
   const rows = [
     ["Skill level", trained ? s.level : "Untrained (−4)"],
     ["Links", s.links.length ? `${s.links.map(k => `${ATTRIBUTE_LABELS[k]} ${formatMod(linkModifier(actor.system?.attributes?.[k]?.value))}`).join(", ")}` : "—"],
@@ -168,8 +221,8 @@ export async function rollSkill(actor, row, { prompt = false, extraRows = [], ex
     speaker: ChatMessage.getSpeaker({ actor }),
     flavor: card({
       title: title ?? `${s.name} Check`, subtitle: s.complexity ? `TN ${s.tn} / ${s.complexity}` : "",
-      rows, result: roll.total, tn: s.tn, margin,
-      extra: fumble ? `<div class="atow-note">Natural 2 — fumble.</div>` : crit ? `<div class="atow-note">Natural 12 — automatic success.</div>` : ""
+      rows, result: check.total, tn: s.tn, margin,
+      extra: check.noteBlock
     })
   });
   return { roll, margin, success: margin >= 0 };
