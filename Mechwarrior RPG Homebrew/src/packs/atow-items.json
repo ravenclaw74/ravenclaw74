@@ -4003,18 +4003,18 @@
  },
  {
   "_key": "!items!EILA9YPTkrNmmfzb",
-  "name": "Art [Advanced]",
+  "name": "Art",
   "type": "item",
   "img": "modules/mechwarrior-rpg-homebrew/icons/Skill Check.png",
   "folder": "ye64Irj7auKZd4e1",
   "system": {
-   "description": "\n      <div style=\"border:2px solid #008000;background:#ffffff;padding:8px;font-family:sans-serif;color:#000000\">\n        <h3 style=\"border-bottom:2px solid #008000;color:#000000;margin:0;text-transform:uppercase\">Art [Advanced]</h3>\n        <table style=\"width:100%;font-size:0.9em;margin:5px 0;color:#000000;border-collapse:collapse\">\n          <tbody><tr>\n            <td style=\"width:50%\"><b>Attributes:</b> DEX/INT</td>\n            <td style=\"width:50%;text-align:right\"><b>TN/C:</b> 9/CA</td>\n          </tr>\n        </tbody></table>\n        <div style=\"margin-top:8px;border-top:1px solid #000000;font-size:0.95em;color:#000000;padding-top:5px\">\n          <p>\n        </p></div>\n      </div>",
+   "description": "\n      <div style=\"border:2px solid #008000;background:#ffffff;padding:8px;font-family:sans-serif;color:#000000\">\n        <h3 style=\"border-bottom:2px solid #008000;color:#000000;margin:0;text-transform:uppercase\">Art</h3>\n        <table style=\"width:100%;font-size:0.9em;margin:5px 0;color:#000000;border-collapse:collapse\">\n          <tbody><tr>\n            <td style=\"width:50%\"><b>Attributes:</b> DEX/INT</td>\n            <td style=\"width:50%;text-align:right\"><b>TN/C:</b> 9/CA</td>\n          </tr>\n        </tbody></table>\n        <div style=\"margin-top:8px;border-top:1px solid #000000;font-size:0.95em;color:#000000;padding-top:5px\">\n          <p>\n        </p></div>\n      </div>",
    "quantity": 1,
    "weight": 0,
    "attributes": {},
    "groups": {},
    "props": {
-    "name": "Art [Advanced]",
+    "name": "Art",
     "a1": "dex",
     "a2": "int",
     "tn": 9,
@@ -6763,53 +6763,6 @@
   }
  },
  {
-  "_key": "!items!Jx4rAkMjmt9MvUwr",
-  "name": "Interest [Basic]",
-  "type": "item",
-  "img": "modules/mechwarrior-rpg-homebrew/icons/Skill Check.png",
-  "folder": "ye64Irj7auKZd4e1",
-  "system": {
-   "description": "\n      <div style=\"border:2px solid #008000;background:#ffffff;padding:8px;font-family:sans-serif;color:#000000\">\n        <h3 style=\"border-bottom:2px solid #008000;color:#000000;margin:0;text-transform:uppercase\">Interest [Basic]</h3>\n        <table style=\"width:100%;font-size:0.9em;margin:5px 0;color:#000000;border-collapse:collapse\">\n          <tbody><tr>\n            <td style=\"width:50%\"><b>Attributes:</b> INT</td>\n            <td style=\"width:50%;text-align:right\"><b>TN/C:</b> 8/CB</td>\n          </tr>\n        </tbody></table>\n        <div style=\"margin-top:8px;border-top:1px solid #000000;font-size:0.95em;color:#000000;padding-top:5px\">\n          <p>\n        </p></div>\n      </div>",
-   "quantity": 1,
-   "weight": 0,
-   "attributes": {},
-   "groups": {},
-   "props": {
-    "name": "Interest [Basic]",
-    "a1": "int",
-    "a2": "",
-    "tn": 8,
-    "c": "CB",
-    "description": "<p/>"
-   }
-  },
-  "_id": "Jx4rAkMjmt9MvUwr",
-  "effects": [],
-  "sort": 0,
-  "ownership": {
-   "default": 0
-  },
-  "flags": {
-   "mechwarrior-rpg-homebrew": {
-    "category": "skill"
-   },
-   "core": {
-    "sheetClass": "worldbuilding.ATOWItemSheet"
-   }
-  },
-  "_stats": {
-   "compendiumSource": null,
-   "duplicateSource": null,
-   "exportSource": null,
-   "coreVersion": "13.351",
-   "systemId": "worldbuilding",
-   "systemVersion": "0.8.2",
-   "createdTime": 1767571143077,
-   "modifiedTime": 1767571143077,
-   "lastModifiedBy": null
-  }
- },
- {
   "_key": "!items!kCl4pMLSJwfYZkmK",
   "name": "Navigation - Space",
   "type": "item",
@@ -8552,53 +8505,6 @@
    "systemVersion": "0.8.2",
    "createdTime": 1767571132651,
    "modifiedTime": 1767571132651,
-   "lastModifiedBy": null
-  }
- },
- {
-  "_key": "!items!ox1kpu6X2oZWrGMa",
-  "name": "Art [Basic]",
-  "type": "item",
-  "img": "modules/mechwarrior-rpg-homebrew/icons/Skill Check.png",
-  "folder": "ye64Irj7auKZd4e1",
-  "system": {
-   "description": "\n      <div style=\"border:2px solid #008000;background:#ffffff;padding:8px;font-family:sans-serif;color:#000000\">\n        <h3 style=\"border-bottom:2px solid #008000;color:#000000;margin:0;text-transform:uppercase\">Art [Basic]</h3>\n        <table style=\"width:100%;font-size:0.9em;margin:5px 0;color:#000000;border-collapse:collapse\">\n          <tbody><tr>\n            <td style=\"width:50%\"><b>Attributes:</b> DEX</td>\n            <td style=\"width:50%;text-align:right\"><b>TN/C:</b> 8/CB</td>\n          </tr>\n        </tbody></table>\n        <div style=\"margin-top:8px;border-top:1px solid #000000;font-size:0.95em;color:#000000;padding-top:5px\">\n          <p>\n        </p></div>\n      </div>",
-   "quantity": 1,
-   "weight": 0,
-   "attributes": {},
-   "groups": {},
-   "props": {
-    "name": "Art [Basic]",
-    "a1": "dex",
-    "a2": "",
-    "tn": 8,
-    "c": "CB",
-    "description": "<p/>"
-   }
-  },
-  "_id": "ox1kpu6X2oZWrGMa",
-  "effects": [],
-  "sort": 0,
-  "ownership": {
-   "default": 0
-  },
-  "flags": {
-   "mechwarrior-rpg-homebrew": {
-    "category": "skill"
-   },
-   "core": {
-    "sheetClass": "worldbuilding.ATOWItemSheet"
-   }
-  },
-  "_stats": {
-   "compendiumSource": null,
-   "duplicateSource": null,
-   "exportSource": null,
-   "coreVersion": "13.351",
-   "systemId": "worldbuilding",
-   "systemVersion": "0.8.2",
-   "createdTime": 1767571143077,
-   "modifiedTime": 1767571143077,
    "lastModifiedBy": null
   }
  },
@@ -12500,18 +12406,18 @@
  },
  {
   "_key": "!items!ZlkUM1obM1ZTN0Ps",
-  "name": "Interest [Advanced]",
+  "name": "Interest",
   "type": "item",
   "img": "modules/mechwarrior-rpg-homebrew/icons/Skill Check.png",
   "folder": "ye64Irj7auKZd4e1",
   "system": {
-   "description": "\n      <div style=\"border:2px solid #008000;background:#ffffff;padding:8px;font-family:sans-serif;color:#000000\">\n        <h3 style=\"border-bottom:2px solid #008000;color:#000000;margin:0;text-transform:uppercase\">Interest [Advanced]</h3>\n        <table style=\"width:100%;font-size:0.9em;margin:5px 0;color:#000000;border-collapse:collapse\">\n          <tbody><tr>\n            <td style=\"width:50%\"><b>Attributes:</b> INT/WIL</td>\n            <td style=\"width:50%;text-align:right\"><b>TN/C:</b> 9/CA</td>\n          </tr>\n        </tbody></table>\n        <div style=\"margin-top:8px;border-top:1px solid #000000;font-size:0.95em;color:#000000;padding-top:5px\">\n          <p>\n        </p></div>\n      </div>",
+   "description": "\n      <div style=\"border:2px solid #008000;background:#ffffff;padding:8px;font-family:sans-serif;color:#000000\">\n        <h3 style=\"border-bottom:2px solid #008000;color:#000000;margin:0;text-transform:uppercase\">Interest</h3>\n        <table style=\"width:100%;font-size:0.9em;margin:5px 0;color:#000000;border-collapse:collapse\">\n          <tbody><tr>\n            <td style=\"width:50%\"><b>Attributes:</b> INT/WIL</td>\n            <td style=\"width:50%;text-align:right\"><b>TN/C:</b> 9/CA</td>\n          </tr>\n        </tbody></table>\n        <div style=\"margin-top:8px;border-top:1px solid #000000;font-size:0.95em;color:#000000;padding-top:5px\">\n          <p>\n        </p></div>\n      </div>",
    "quantity": 1,
    "weight": 0,
    "attributes": {},
    "groups": {},
    "props": {
-    "name": "Interest [Advanced]",
+    "name": "Interest",
     "a1": "int",
     "a2": "wil",
     "tn": 9,
