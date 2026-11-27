@@ -1,5 +1,5 @@
-2026/11/27-07:30:44.830 1538 Delete type=3 #1
-2026/11/27-07:30:44.834 3054 Level-0 table #5: started
-2026/11/27-07:30:44.836 3054 Level-0 table #5: 43827 bytes OK
-2026/11/27-07:30:44.837 3054 Delete type=0 #3
-2026/11/27-07:30:44.838 3054 Manual compaction at level-0 from '\x00' @ 72057594037927935 : 1 .. '\xc3\xbf' @ 0 : 0; will stop at (end)
+2026/11/27-07:40:42.114 33ec Delete type=3 #1
+2026/11/27-07:40:42.117 4a54 Level-0 table #5: started
+2026/11/27-07:40:42.120 4a54 Level-0 table #5: 43827 bytes OK
+2026/11/27-07:40:42.121 4a54 Delete type=0 #3
+2026/11/27-07:40:42.122 4a54 Manual compaction at level-0 from '\x00' @ 72057594037927935 : 1 .. '\xc3\xbf' @ 0 : 0; will stop at (end)
