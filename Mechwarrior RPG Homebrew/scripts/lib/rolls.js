@@ -38,7 +38,7 @@ const MAX_UNMODIFIED = 30;
  * @param {Roll} roll  a Roll whose first dice term is the check's 2d6 (or 3d6kh2); evaluated here if needed
  */
 export async function evaluateActionRoll(roll) {
-  if (roll.total == null) await roll.evaluate();
+  if (!roll._evaluated) await roll.evaluate();
   const natural = naturalTotal(roll) ?? 0;
   const extra = [];
   let unmodified = natural;
